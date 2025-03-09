@@ -5,6 +5,7 @@ import Howitworks from '../Components/Howitworks'
 import Achievements from '../Components/Achievements'
 import Carousel from '../Components/Carousel'
 import Testimonials from '../Components/Testimonials'
+import Footer from '../Components/Footer'
 
 const Landing = () => {
   return (
@@ -15,6 +16,7 @@ const Landing = () => {
       <Achievements />
       <Carousel />
       <Testimonials />
+      <Footer />
     </main>
   )
 }
