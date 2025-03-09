@@ -11,13 +11,13 @@ const Achievements = () => {
       </div>
       <div className='w-[75%] h-full flex justify-around items-center gap-8 relative'>
         <div className='h-full w-full relative'>
-          <div className='h-full w-full bg-amber-600 absolute -top-8'></div>
+          <div className='h-full w-full bg-amber-600 lg:absolute -top-8'></div>
         </div>
         <div className='h-full w-full'>
           <div className='h-full w-full bg-amber-600'></div>
         </div>
         <div className='h-full w-full relative'>
-          <div className='h-full w-full bg-amber-600 absolute -top-8'></div>
+          <div className='h-full w-full bg-amber-600 lg:absolute -top-8'></div>
         </div>
       </div>
     </section>

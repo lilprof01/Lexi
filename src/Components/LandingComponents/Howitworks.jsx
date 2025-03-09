@@ -3,7 +3,7 @@ import Button from "./Button";
 import dummy from "/dummy.webp";
 import secImage1 from "/mockup1.webp";
 import secImage2 from "/guide.webp";
-import secImage3 from "/twoChildren.webp";
+import secImage3 from "/community.webp";
 
 const Howitworks = () => {
   return (
