@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import {auth, app} from './Firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+
 
 const Login = () => {
 
@@ -14,10 +16,11 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // console.log(userCredential);
+          toast.success("Logging you into your account...", {position: "top-center"});
     navigate('/dashboard');
   })
   .catch((error) => {
-    console.log(error);
+          toast.success(error.message, {position: "top-center"});
   });
 
     }
@@ -49,7 +52,7 @@ const Login = () => {
       </div>
 
       <div>
-        <button type="submit" className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-white hover:text-[#6C3BAA] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+        <button type="submit" className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs">Sign in</button>
       </div>
     </form>
 
