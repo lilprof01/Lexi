@@ -23,3 +23,78 @@ button{
 .carousel-card{
   scroll-snap-align: start;
 }
+
+/* hamburger animation */
+.burger1{
+  animation: down-rotate 1s ease-out forwards;
+}
+
+@keyframes down-rotate{
+  0%{
+    margin-bottom: 6px;
+  }
+  100%{
+    margin-bottom: -3px;
+    rotate: 45deg;
+    width: 32px;
+  }
+}
+
+.burger2{
+  animation: up-rotate 1s ease-out forwards;
+}
+
+@keyframes up-rotate{
+  0%{
+    margin-top: 6px;
+  }
+  100%{
+    margin-top: -6px;
+    rotate: -45deg;
+    width: 32px;
+  }
+}
+
+.burger-1{
+  animation: down-rotate-off 1s ease-out forwards;
+}
+
+@keyframes down-rotate-off{
+  0%{
+    margin-bottom: -6px;
+    rotate: 45deg;
+    width: 32px;
+  }
+  100%{
+    margin-bottom: 6px;
+    width: 48px;
+  }
+}
+
+.burger-2{
+  animation: up-rotate-off 1s ease-out forwards;
+}
+
+@keyframes up-rotate-off{
+  0%{
+    margin-top: -6px;
+    rotate: -45deg;
+  }
+  100%{
+    margin-top: 6px;
+    width: 24px;
+  }
+}
+
+.show{
+  animation: return 1.5s ease-out;
+}
+
+@keyframes return{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
