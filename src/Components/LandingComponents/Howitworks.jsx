@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "./Button";
-import dummy from "/dummy.webp";
 import secImage1 from "/mockup1.webp";
 import secImage2 from "/guide.webp";
 import secImage3 from "/community.webp";
@@ -9,7 +8,7 @@ const Howitworks = () => {
   return (
     <section
       role="howitworks"
-      className="howitworks-section flex flex-col justify-center items-center gap-20 p-8 lg:p-28"
+      className="howitworks-section flex flex-col justify-center items-center lg:gap-20 p-8 lg:p-28"
     >
       <h2 className="font-bold text-3xl">How it works</h2>
       <div className="h-[70vh] w-full flex flex-col lg:flex-row justify-center items-center gap-10">
