@@ -1,25 +1,27 @@
 import React, { useState } from "react";
-import { auth, app } from "../Login/Firebase";
+import { auth, app, db } from "../Login/Firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate('');
 
-  const signUp = (e) => {
-    e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // console.log(userCredential);
-        navigate("/dashboard");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    const signUp = (e) => {
+        e.preventDefault();
+        createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // console.log(userCredential);
+    navigate('/dashboard');
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+    }
 
   return (
     <div>
@@ -29,75 +31,31 @@ const Signup = () => {
         </h2>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form onSubmit={signUp} className="space-y-6" action="#" method="POST">
-          <div>
-            <div className="mt-2">
-              <input
-                type="text"
-                id="firstname"
-                required
-                placeholder="First Name"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-            </div>
-            <div className="mt-2">
-              <input
-                type="text"
-                id="lastname"
-                required
-                placeholder="Last Name"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-              <input
-                type="text"
-                id="username"
-                required
-                placeholder="Your Preferred Username"
-                className="block w-full rounded-md mt-2 bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-            </div>
-            <div className="mt-2">
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="Email Address"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-            </div>
-            <div className="mt-2">
-              <input
-                type="text"
-                id="phone"
-                required
-                placeholder="Phone Number"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-              <select
-                id="age"
-                required
-                className="block w-full rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-              >
-                <option value="" disabled defaultValue>
-                  Age
-                </option>
+  <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form onSubmit={signUp} className="space-y-6" action="#" method="POST">
+      <div>
+        <div className="mt-2">
+          <input type="text" id='firstname' required placeholder='First Name' className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"/>
+        </div>
+        <div className="mt-2">
+          <input type="text" id='lastname' required placeholder='Last Name' className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"/>
+          <input type="text" id='username' required placeholder='Your Preferred Username' className="block w-full rounded-md mt-2 bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"/>
+        </div>
+        <div className="mt-2">
+          <input type="email" id='email' value={email} onChange={(e) => setEmail(e.target.value)} required placeholder='Email Address' className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"/>
+        </div>
+        <div className="mt-2">
+          <input type="text" id='phone' required placeholder='Phone Number' className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"/>
+          <select id="age" required className="block w-full rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm">
+                <option value="" disabled defaultValue>Age</option>
                 <option value="tens">10-20</option>
                 <option value="twenties">21-30</option>
                 <option value="thirties">31-40</option>
                 <option value="forties">41-50</option>
               </select>
 
-              <select
-                id="gender"
-                required
-                className="block w-full rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-              >
-                <option value="" disabled defaultValue>
-                  Gender
-                </option>
+              <select id="gender" required className="block w-full rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm">
+                <option value="" disabled defaultValue>Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
@@ -143,7 +101,8 @@ const Signup = () => {
         </p>
       </div>
     </div>
-  );
-};
+    
+  )
+}
 
-export default Signup;
+export default Signup
