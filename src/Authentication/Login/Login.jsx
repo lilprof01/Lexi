@@ -1,29 +1,27 @@
-import React, { useState } from 'react'
-import {auth, app} from './Firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { auth, app } from "./Firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate("");
 
-    const signIn = (e) => {
-        e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // console.log(userCredential);
-    navigate('/dashboard');
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
-    }
+  const signIn = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // console.log(userCredential);
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
-    <div>
+    <div className="p-3">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-[#6C3BAA]">
           Sign in to your account
@@ -79,10 +77,15 @@ const Login = () => {
             </div>
           </div>
 
-      <div>
-        <button type="submit" className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-white hover:text-[#6C3BAA] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-      </div>
-    </form>
+          <div>
+            <button
+              type="submit"
+              className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-white hover:text-[#6C3BAA] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Sign in
+            </button>
+          </div>
+        </form>
 
         <p className="mt-10 text-center text-sm/6 text-gray-500">
           Not one of us?

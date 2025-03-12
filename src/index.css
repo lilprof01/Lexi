@@ -26,7 +26,7 @@ button{
 
 /* hamburger animation */
 .burger1{
-  animation: down-rotate 1s ease-out forwards;
+  animation: down-rotate 0.5s ease-out forwards;
 }
 
 @keyframes down-rotate{
@@ -41,7 +41,7 @@ button{
 }
 
 .burger2{
-  animation: up-rotate 1s ease-out forwards;
+  animation: up-rotate 0.5s ease-out forwards;
 }
 
 @keyframes up-rotate{
@@ -56,7 +56,7 @@ button{
 }
 
 .burger-1{
-  animation: down-rotate-off 1s ease-out forwards;
+  animation: down-rotate-off 0.5s ease-out forwards;
 }
 
 @keyframes down-rotate-off{
@@ -72,7 +72,7 @@ button{
 }
 
 .burger-2{
-  animation: up-rotate-off 1s ease-out forwards;
+  animation: up-rotate-off 0.5s ease-out forwards;
 }
 
 @keyframes up-rotate-off{
@@ -87,7 +87,7 @@ button{
 }
 
 .show{
-  animation: return 1.5s ease-out;
+  animation: return 0.7s ease-out;
 }
 
 @keyframes return{
@@ -97,4 +97,61 @@ button{
   100%{
     opacity: 1;
   }
+}
+
+.open-nav{
+  display: flex;
+  animation: open 0.5s ease-in-out forwards;
+}
+
+.close-nav{
+  animation: close 0.5s ease-in-out forwards;
+}
+
+@keyframes open{
+  from{
+    transform: translateX(100%);
+  }
+  to{
+    transform: translateX(0);
+  }
+}
+
+@keyframes close{
+  from{
+    display: flex;
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(100%);
+    display: none;
+  }
+}
+
+.swiper-pagination {
+  position: relative !important; /* Override Swiper's default */
+  bottom: -10px !important; /* Adjust the position */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 768px) {
+  .custom-swiper{
+    padding: 40px !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .custom-swiper{
+    padding: 30px !important;
+  }
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  opacity: 1;
+  background-color: white;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #ffd966;
 }

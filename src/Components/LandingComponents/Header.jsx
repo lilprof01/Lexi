@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ openNav, handleOpenNav }) => {
   return (
     <header
       role="banner"
@@ -27,11 +27,12 @@ const Header = () => {
 
       {/* hamburger for mobile */}
       <div
-        className={`hamburger h-10 w-10 flex flex-col justify-center items-end align-middle gap-1 z-[100] hover:cursor-pointer sm:hidden`}
+        onClick={handleOpenNav}
+        className={`hamburger h-10 w-10 flex flex-col justify-center items-end align-middle z-[100] hover:cursor-pointer sm:hidden`}
       >
-        <div className={`h-1 w-12 bg-[#121212] dark:bg-[#f6f4ef]`}></div>
-        <div className={`h-1 w-8 bg-[#121212] dark:bg-[#f6f4ef]`}></div>
-        <div className={`h-1 w-6 bg-[#121212] dark:bg-[#f6f4ef]`}></div>
+        <div className={`h-1 w-12 bg-[#121212] dark:bg-[#f6f4ef] ${openNav ? 'burger1' : 'burger-1'}`}></div>
+        <div className={`h-1 w-8 bg-[#121212] dark:bg-[#f6f4ef] ${openNav ? 'invisible' : 'show'}`}></div>
+        <div className={`h-1 w-6 bg-[#121212] dark:bg-[#f6f4ef] ${openNav ? 'burger2' : 'burger-2'}`}></div>
       </div>
     </header>
   );
