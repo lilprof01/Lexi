@@ -4,6 +4,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -43,6 +45,32 @@ const Signup = () => {
       navigate("/dashboard");
     } catch (error) {
       toast.success(error.message, {position: "top-center"});
+    }
+  };
+
+  const handleGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+  
+      console.log("User signed in:", user);
+  
+      if (user) {
+        await setDoc(doc(db, "users", user.uid), {
+          firstName: "",
+          lastName: "",
+          username: user.displayName,
+          phone: "",
+          age: "",
+          gender: "",
+          email: user.email,
+          uid: "",
+        });
+      }  
+      navigate("/dashboard");
+    } catch (error) {
+      console.log("Error during sign-in:", error);
     }
   };
 
@@ -109,12 +137,13 @@ const Signup = () => {
                 placeholder="Phone Number"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />
+              <div className="flex justify-center items-center gap-7">
               <select
                 id="age"
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
                 required
-                className="block w-full rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                className="block w-[180px] rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
               >
                 <option value="" disabled defaultValue>
                   Age
@@ -130,7 +159,7 @@ const Signup = () => {
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
                 required
-                className="block w-full rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                className="block w-[180px] rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
               >
                 <option value="" disabled defaultValue>
                   Gender
@@ -138,6 +167,7 @@ const Signup = () => {
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
+              </div>
               <input
                 type="password"
                 id="password"
@@ -153,30 +183,29 @@ const Signup = () => {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:text-[#6C3BAA] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign up
             </button>
           </div>
         </form>
 
-        <div>
-          <h2 className="block w-full rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
+        <div className="flex justify-center items-center gap-7">
+          <button onClick={handleGoogle} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
             Sign up with Google
-          </h2>
-          <h2 className="block w-full rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
+          </button>
+          <button className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
             Sign up with Facebook
-          </h2>
+          </button>
         </div>
 
-        <p className="mt-10 text-center text-sm/6 text-gray-500">
+        <p className="text-center text-sm/6 text-gray-500">
           Already one of us?
-          <a
-            href="#"
+          <Link to="/login"
             className="pl-[10px] font-semibold text-[#6C3BAA] hover:text-[#6C3BAA]"
           >
             Log in to your account
-          </a>
+          </Link>
         </p>
       </div>
     </div>
