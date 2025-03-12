@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { auth, app } from "./Firebase";
+import { auth, app, provider } from "./Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,15 +27,68 @@ const Login = () => {
         toast.success(error.message, { position: "top-center" });
       });
   };
+
+    const handleGoogle = async () => {
+      const provider = new GoogleAuthProvider();
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+    
+        console.log("User signed in:", user);
+    
+        if (user) {
+          await setDoc(doc(db, "users", user.uid), {
+            firstName: "",
+            lastName: "",
+            username: user.displayName,
+            phone: "",
+            age: "",
+            gender: "",
+            email: user.email,
+            uid: "",
+          });
+        }  
+        navigate("/dashboard");
+      } catch (error) {
+        console.log("Error during sign-in:", error);
+      }
+    };
+  
+    const handleFacebook = async (e) => {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+    
+        console.log("User signed in:", user);
+    
+        if (user) {
+          await setDoc(doc(db, "users", user.uid), {
+            firstName: "",
+            lastName: "",
+            username: user.displayName,
+            phone: "",
+            age: "",
+            gender: "",
+            email: user.email,
+            uid: "",
+          });
+        }  
+        navigate("/dashboard");
+      } catch (error) {
+        console.log("Error during sign-in:", error);
+      }
+    };
+
+
   return (
     <div>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-[#6C3BAA]">
+        <h2 className="mt-10 text-center text-[25px] lg:text-2xl/9  font-bold tracking-tight text-[#6C3BAA]">
           Sign in to your account
         </h2>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mt-10 sm:mx-auto sm:w-full px-[50px] md:px-0 sm:max-w-sm">
         <form className="space-y-6" onSubmit={signIn} method="POST">
           <div>
             <label
@@ -63,7 +119,7 @@ const Login = () => {
                 Password
               </label>
               <div className="text-sm">
-                <Link to="#" className="font-semibold text-[#6C3BAA]">
+                <Link to="/forgotpassword" className="font-semibold text-[#6C3BAA]">
                   Forgot password?
                 </Link>
               </div>
@@ -91,7 +147,16 @@ const Login = () => {
           </div>
         </form>
 
-        <p className="mt-10 text-center text-sm/6 text-gray-500">
+        <div className="flex justify-center items-center gap-4">
+          <button onClick={handleGoogle} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
+            Sign in with Google
+          </button>
+          <button onClick={handleFacebook} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
+            Sign in with Facebook
+          </button>
+        </div>
+
+        <p className="mt-4 text-center text-sm/6 text-gray-500">
           Not one of us?
           <Link
             to="/signup"

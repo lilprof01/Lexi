@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { auth, app, db } from "../Login/Firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, app, db, provider } from "../Login/Firebase";
+import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailLink } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Link } from 'react-router-dom';
+import { FaGoogle } from 'react-icons/fa6'
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -27,6 +28,7 @@ const Signup = () => {
         password
       );
       const user = userCredential.user;
+      await sendEmailVerification(user);
 
       // Store additional user data in Firestore
       if (user) {
@@ -42,7 +44,7 @@ const Signup = () => {
         });
       }
       toast.success("Creating your account...", {position: "top-center"});
-      navigate("/dashboard");
+      navigate("/greetings");
     } catch (error) {
       toast.success(error.message, {position: "top-center"});
     }
@@ -68,7 +70,32 @@ const Signup = () => {
           uid: "",
         });
       }  
-      navigate("/dashboard");
+      navigate("/greetings");
+    } catch (error) {
+      console.log("Error during sign-in:", error);
+    }
+  };
+
+  const handleFacebook = async (e) => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+  
+      console.log("User signed in:", user);
+  
+      if (user) {
+        await setDoc(doc(db, "users", user.uid), {
+          firstName: "",
+          lastName: "",
+          username: user.displayName,
+          phone: "",
+          age: "",
+          gender: "",
+          email: user.email,
+          uid: "",
+        });
+      }  
+      navigate("/greetings");
     } catch (error) {
       console.log("Error during sign-in:", error);
     }
@@ -82,7 +109,7 @@ const Signup = () => {
         </h2>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mt-10 sm:mx-auto sm:w-full px-[50px] md:px-0 sm:max-w-sm">
         <form onSubmit={signUp} className="space-y-6" action="#" method="POST">
           <div>
             <div className="mt-2">
@@ -175,7 +202,7 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Password"
-                className="block w-full rounded-md bg-white mt-2 px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                className="block w-[250px] md:w-full rounded-md bg-white mt-2 px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />
             </div>
           </div>
@@ -190,11 +217,11 @@ const Signup = () => {
           </div>
         </form>
 
-        <div className="flex justify-center items-center gap-7">
+        <div className="flex justify-center items-center gap-4">
           <button onClick={handleGoogle} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
             Sign up with Google
           </button>
-          <button className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
+          <button onClick={handleFacebook} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
             Sign up with Facebook
           </button>
         </div>
