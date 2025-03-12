@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from '../Components/Header'
-import Hero from '../Components/Hero'
-import Howitworks from '../Components/Howitworks'
-import Achievements from '../Components/Achievements'
-import Carousel from '../Components/Carousel'
-import Testimonials from '../Components/Testimonials'
-import Footer from '../Components/Footer'
+import Header from '../Components/LandingComponents/Header'
+import Hero from '../Components/LandingComponents/Hero'
+import Howitworks from '../Components/LandingComponents/Howitworks'
+import Achievements from '../Components/LandingComponents/Achievements'
+import Carousel from '../Components/LandingComponents/Carousel'
+import Testimonials from '../Components/LandingComponents/Testimonials'
+import Footer from '../Components/LandingComponents/Footer'
 
 const Landing = () => {
   return (

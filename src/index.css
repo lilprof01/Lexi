@@ -15,3 +15,11 @@ body, html {
 button{
   text-wrap: nowrap;
 }
+
+.carousel{
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-card{
+  scroll-snap-align: start;
+}
