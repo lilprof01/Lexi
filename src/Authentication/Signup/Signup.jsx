@@ -11,15 +11,9 @@ import { Link } from 'react-router-dom';
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [username, setUsername] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [phone, setPhone] = useState("");
   const navigate = useNavigate("");
 
-  const signUp = async (e) => {
+  const signUp = (e) => {
     e.preventDefault();
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -102,7 +96,7 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="p-3 dark:bg-[#121212] h-screen flex flex-col justify-center items-center align-middle">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-[#6C3BAA]">
           Create your Account
@@ -116,8 +110,6 @@ const Signup = () => {
               <input
                 type="text"
                 id="firstname"
-                value={firstname}
-                onChange={(e) => setFirstname(e.target.value)}
                 required
                 placeholder="First Name"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -127,8 +119,6 @@ const Signup = () => {
               <input
                 type="text"
                 id="lastname"
-                value={lastname}
-                onChange={(e) => setLastname(e.target.value)}
                 required
                 placeholder="Last Name"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -136,8 +126,6 @@ const Signup = () => {
               <input
                 type="text"
                 id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
                 required
                 placeholder="Your Preferred Username"
                 className="block w-full rounded-md mt-2 bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -158,8 +146,6 @@ const Signup = () => {
               <input
                 type="text"
                 id="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
                 required
                 placeholder="Phone Number"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -167,8 +153,6 @@ const Signup = () => {
               <div className="flex justify-center items-center gap-7">
               <select
                 id="age"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
                 required
                 className="block w-[180px] rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
               >
@@ -183,8 +167,6 @@ const Signup = () => {
 
               <select
                 id="gender"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
                 required
                 className="block w-[180px] rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
               >
@@ -210,7 +192,7 @@ const Signup = () => {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:cursor-pointer hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign up
             </button>
@@ -218,10 +200,10 @@ const Signup = () => {
         </form>
 
         <div className="flex justify-center items-center gap-4">
-          <button onClick={handleGoogle} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
+          <button onClick={handleGoogle} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6c3baa] hover:text-white hover:cursor-pointer">
             Sign up with Google
           </button>
-          <button onClick={handleFacebook} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
+          <button onClick={handleFacebook} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6c3baa] hover:text-white hover:cursor-pointer">
             Sign up with Facebook
           </button>
         </div>

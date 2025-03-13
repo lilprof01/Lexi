@@ -12,6 +12,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate("");
 
   const signIn = (e) => {
     e.preventDefault();
@@ -81,9 +84,9 @@ const Login = () => {
 
 
   return (
-    <div>
+    <div className="dark:bg-[#121212] h-screen flex flex-col justify-center items-center align-middle">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-[25px] lg:text-2xl/9  font-bold tracking-tight text-[#6C3BAA]">
+        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-[#6C3BAA]">
           Sign in to your account
         </h2>
       </div>
@@ -140,7 +143,7 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs"
+              className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:cursor-pointer hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign in
             </button>
