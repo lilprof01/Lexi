@@ -12,9 +12,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate("");
 
   const signIn = (e) => {
     e.preventDefault();
@@ -151,10 +148,10 @@ const Login = () => {
         </form>
 
         <div className="flex justify-center items-center gap-4">
-          <button onClick={handleGoogle} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
+          <button onClick={handleGoogle} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6C3BAA] hover:text-white">
             Sign in with Google
           </button>
-          <button onClick={handleFacebook} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6">
+          <button onClick={handleFacebook} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6C3BAA] hover:text-white">
             Sign in with Facebook
           </button>
         </div>
