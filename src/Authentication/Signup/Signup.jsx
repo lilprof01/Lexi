@@ -6,7 +6,7 @@ import { setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Link } from 'react-router-dom';
-import { FaGoogle } from 'react-icons/fa6'
+// import { FaGoogle } from 'react-icons/fa6'
 
 const Signup = () => {
   const [email, setEmail] = useState("");
