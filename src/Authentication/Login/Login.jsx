@@ -21,7 +21,7 @@ const Login = () => {
       });
   };
   return (
-    <div className="p-3">
+    <div className="dark:bg-[#121212] h-screen flex flex-col justify-center items-center align-middle">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-[#6C3BAA]">
           Sign in to your account
@@ -33,7 +33,7 @@ const Login = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm/6 font-medium text-gray-900"
+              className="block text-sm/6 font-medium text-gray-900 dark:text-white"
             >
               Email address
             </label>
@@ -54,7 +54,7 @@ const Login = () => {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="block text-sm/6 font-medium text-gray-900"
+                className="block text-sm/6 font-medium text-gray-900 dark:text-white"
               >
                 Password
               </label>
@@ -80,7 +80,7 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-white hover:text-[#6C3BAA] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center rounded-md bg-[#6C3BAA] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:cursor-pointer hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign in
             </button>

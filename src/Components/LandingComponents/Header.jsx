@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Header = ({ openNav, handleOpenNav }) => {
+
+  useEffect(() => {
+    if (openNav) {
+      document.body.style.overflow = "hidden"; // Disable scrolling
+    } else {
+      document.body.style.overflow = "auto"; // Re-enable scrolling
+    }
+
+    return () => {
+      document.body.style.overflow = "auto"; // Cleanup when component unmounts
+    };
+  }, [openNav]);
+
   return (
     <header
       role="banner"
-      className="flex justify-between items-center align-middle py-4 px-8 bg-white dark:bg-black w-full z-10 top-0 left-0"
+      className={`${openNav ? '' : ''} flex justify-between items-center align-middle py-4 px-8 bg-white dark:bg-black w-full z-10 top-0 left-0`}
     >
       <h1 className="text-[#6C3BAA] font-bold text-2xl hover:cursor-pointer select-none">
         LEXI
