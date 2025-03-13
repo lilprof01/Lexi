@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // console.log(userCredential);
+        // console.log(userCredential)
         toast.success("Logging you into your account...", {
           position: "top-center",
         });
