@@ -3,6 +3,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaGlobe } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -18,23 +19,23 @@ const Footer = () => {
         <div className="flex flex-col gap-3">
           <h4 className="font-semibold">Lexi</h4>
           <ul className="flex flex-col gap-1">
-            <li>About</li>
-            <li>FAQ</li>
-            <li>Terms of Service</li>
-            <li>Privacy Policy</li>
+            <Link to="/signup">Spanish</Link>
+            <Link to="/signup">German</Link>
+            <Link to="/signup">French</Link>
+            <Link to="/signup">Italian</Link>
           </ul>
         </div>
         <div className="flex flex-col gap-3">
           <h4 className="font-semibold">Socials</h4>
           <ul className="flex flex-col gap-1">
-            <li className="flex gap-1 justify-center lg:justify-start items-center align-middle">Facebook<FaFacebook /></li>
-            <li className="flex gap-1 justify-center lg:justify-start items-center align-middle">Instagram<FaInstagram /> </li>
-            <li className="flex gap-1 justify-center lg:justify-start items-center align-middle">Twitter<FaXTwitter /> </li>
-            <li className="flex gap-1 justify-center lg:justify-start items-center align-middle">Lexi<FaGlobe /> </li>
+            <a href="https://www.facebook.com" target="_blank"><li className="flex gap-1 justify-center lg:justify-start items-center align-middle">Facebook<FaFacebook /></li></a>
+            <a href="https://www.instagram.com" target="_blank"><li className="flex gap-1 justify-center lg:justify-start items-center align-middle">Instagram<FaInstagram /> </li></a>
+            <a href="https://www.x.com" target="_blank"><li className="flex gap-1 justify-center lg:justify-start items-center align-middle">Twitter<FaXTwitter /> </li></a>
+            <a href="#" target="_blank"><li className="flex gap-1 justify-center lg:justify-start items-center align-middle">Lexi<FaGlobe /> </li></a>
           </ul>
         </div>
         <div className="flex flex-col gap-3">
-          <h4 className="font-semibold">LEXI</h4>
+          <h4 className="font-semibold">Quick Links</h4>
           <ul className="flex flex-col gap-1">
             <li>About</li>
             <li>FAQ</li>

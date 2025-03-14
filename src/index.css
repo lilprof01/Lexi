@@ -167,6 +167,7 @@ body, html {
 .swiper-pagination .swiper-pagination-bullet {
   opacity: 1;
   background-color: white;
+  scale: 1.5;
 }
 
 .swiper-pagination .swiper-pagination-bullet-active {
