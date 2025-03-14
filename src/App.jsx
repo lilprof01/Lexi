@@ -6,7 +6,12 @@ import "./App.css";
 import Landing from "./Pages/Landing";
 import Darkmodetoggler from "./Components/Darkmodetoggler";
 import { ThemeProvider } from "./Context/Themecontext";
-import Dashboard from "./Authentication/Login/Dashboard";
+import Greetings from "./Authentication/Greetings/Greetings";
+import ResetPassword from "./Authentication/Login/ResetPassword";
+import Greetings_2 from "./Authentication/Greetings/Greetings_2";
+import Greetings_3 from "./Authentication/Greetings/Greetings_3";
+import Greetings_4 from "./Authentication/Greetings/Greetings_4";
+import Dashboard from "./Pages/Dashboard";
 
 function App() {
   return (
@@ -17,6 +22,11 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/greetings" element={<Greetings />} />
+            <Route path="/greetings-2" element={<Greetings_2 />} />
+            <Route path="/greetings-3" element={<Greetings_3 />} />
+            <Route path="/greetings-4" element={<Greetings_4 />} />
+            <Route path="/forgotpassword" element={<ResetPassword />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
           <Darkmodetoggler />
