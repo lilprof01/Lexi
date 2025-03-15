@@ -13,7 +13,6 @@ const Hero = () => {
   const navigate = useNavigate("");
 
   const handleLanguageSelect = async (language) => {
-
     const sessionId = uuidv4(); // Generate a temporary unique session ID
 
     localStorage.setItem("sessionId", sessionId); // Store session ID in localStorage

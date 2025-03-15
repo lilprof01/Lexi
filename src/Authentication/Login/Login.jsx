@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { auth, app, provider } from "./Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
-
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,67 +18,78 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // console.log(userCredential)
-        toast.success("Logging you into your account...", {
-          position: "top-center",
-        });
-        navigate("/dashboard");
+        toast.success("Logging you into your account...");
+        setTimeout(() => navigate("/dashboard"), 3000);
       })
       .catch((error) => {
-        toast.success(error.message, { position: "top-center" });
+        toast.error("Invalid Email or Password", { position: "top-center" });
       });
   };
 
-    const handleGoogle = async () => {
-      const provider = new GoogleAuthProvider();
-      try {
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-    
-        console.log("User signed in:", user);
-    
-        if (user) {
-          await setDoc(doc(db, "users", user.uid), {
-            firstName: "",
-            lastName: "",
-            username: user.displayName,
-            phone: "",
-            age: "",
-            gender: "",
-            email: user.email,
-            uid: "",
-          });
-        }  
-        navigate("/dashboard");
-      } catch (error) {
-        console.log("Error during sign-in:", error);
-      }
-    };
-  
-    const handleFacebook = async (e) => {
-      try {
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-    
-        console.log("User signed in:", user);
-    
-        if (user) {
-          await setDoc(doc(db, "users", user.uid), {
-            firstName: "",
-            lastName: "",
-            username: user.displayName,
-            phone: "",
-            age: "",
-            gender: "",
-            email: user.email,
-            uid: "",
-          });
-        }  
-        navigate("/dashboard");
-      } catch (error) {
-        console.log("Error during sign-in:", error);
-      }
-    };
+  const handleGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
 
+      console.log("User signed in:", user);
+
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+          await setDoc(doc(db, "users", user.uid), {
+            firstName: "",
+            lastName: "",
+            username: user.displayName,
+            phone: "",
+            age: "",
+            gender: "",
+            email: user.email,
+            uid: "",
+          });
+          navigate("/greetings"); // Navigate new users to greetings page
+        } else {
+          navigate("/dashboard"); // Navigate existing users to dashboard
+        }
+      }
+    } catch (error) {
+      console.log("Error during sign-in:", error);
+    }
+  };
+
+  const handleFacebook = async (e) => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      console.log("User signed in:", user);
+
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+          await setDoc(doc(db, "users", user.uid), {
+            firstName: "",
+            lastName: "",
+            username: user.displayName,
+            phone: "",
+            age: "",
+            gender: "",
+            email: user.email,
+            uid: "",
+          });
+          navigate("/greetings"); // Navigate new users to greetings page
+        } else {
+          navigate("/dashboard"); // Navigate existing users to dashboard
+        }
+      }
+    } catch (error) {
+      console.log("Error during sign-in:", error);
+    }
+  };
 
   return (
     <div className="dark:bg-[#121212] h-screen flex flex-col justify-center items-center align-middle">
@@ -87,6 +98,7 @@ const Login = () => {
           Sign in to your account
         </h2>
       </div>
+      <ToastContainer position="top-center" autoClose={3000} />
 
       <div className="mt-10 sm:mx-auto sm:w-full px-[50px] md:px-0 sm:max-w-sm">
         <form className="space-y-6" onSubmit={signIn} method="POST">
@@ -119,7 +131,10 @@ const Login = () => {
                 Password
               </label>
               <div className="text-sm">
-                <Link to="/forgotpassword" className="font-semibold text-[#6C3BAA]">
+                <Link
+                  to="/forgotpassword"
+                  className="font-semibold text-[#6C3BAA]"
+                >
                   Forgot password?
                 </Link>
               </div>
@@ -148,10 +163,16 @@ const Login = () => {
         </form>
 
         <div className="flex justify-center items-center gap-4">
-          <button onClick={handleGoogle} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6C3BAA] hover:text-white">
+          <button
+            onClick={handleGoogle}
+            className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6C3BAA] hover:text-white"
+          >
             Sign in with Google
           </button>
-          <button onClick={handleFacebook} className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6C3BAA] hover:text-white">
+          <button
+            onClick={handleFacebook}
+            className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6C3BAA] hover:text-white"
+          >
             Sign in with Facebook
           </button>
         </div>
@@ -166,6 +187,9 @@ const Login = () => {
           </Link>
         </p>
       </div>
+      <button onClick={() => toast.success("Toast is working!")}>
+        Test Toast
+      </button>
     </div>
   );
 };

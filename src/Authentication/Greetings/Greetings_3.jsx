@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { auth, app, db } from "../Login/Firebase";
 import { getDoc, doc } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setDoc } from "firebase/firestore";
 // import { toast } from "react-toastify";
 
 const Greetings_3 = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [selectedGoal, setSelectedGoal] = useState(null);
-  const goals = ["Improve conversation skills", "Prepare for a language proficiency test", "Learn for travel, work, or fun"];
+  const goals = [
+    "Improve conversation skills",
+    "Prepare for a language proficiency test",
+    "Learn for travel, work, or fun",
+  ];
+  const navigate = useNavigate("");
 
   const fetchUserData = async () => {
     auth.onAuthStateChanged(async (user) => {
@@ -37,6 +42,7 @@ const Greetings_3 = () => {
       const userRef = doc(db, "UserResponses", user.uid);
       await setDoc(userRef, { userGoal: goal }, { merge: true });
       console.log("Response saved:", goal);
+      navigate("/greetings-4");
     } else {
       console.log("User not signed in");
     }
@@ -74,9 +80,6 @@ const Greetings_3 = () => {
               </button>
             ))}
           </div>
-          <Link to="/greetings-4" className="mt-10 ml-[180px] md:ml-[380px] flex w-[150px] justify-center rounded-md bg-[#6C3BAA] px-3 py-2.5 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-            Next
-          </Link>
         </div>
       ) : (
         <h1>Loading user data...</h1>
