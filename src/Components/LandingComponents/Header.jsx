@@ -19,11 +19,11 @@ const Header = ({ openNav, handleOpenNav }) => {
       role="banner"
       className={`${
         openNav ? "" : ""
-      } flex justify-between items-center align-middle py-4 px-8 bg-white dark:bg-black w-full z-10 top-0 left-0`}
+      } flex sm:fixed justify-between items-center align-middle py-4 px-8 bg-white dark:bg-black w-full z-10 top-0 left-0`}
     >
-      <h1 className="text-[#6C3BAA] font-bold text-2xl hover:cursor-pointer select-none">
+      <Link to="/" className="text-[#6C3BAA] font-bold text-2xl hover:cursor-pointer select-none">
         LEXI
-      </h1>
+      </Link>
       <div className="sm:flex gap-4 hidden">
         <Link
           to="/login"

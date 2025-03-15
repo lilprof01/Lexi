@@ -12,7 +12,7 @@ const Testimonials = () => {
   return (
     <section
       role="testimonials"
-      className="testimonials-section h-screen flex flex-col justify-center items-center gap-4 bg-[#fe4d01] py-8"
+      className="testimonials-section h-screen flex flex-col justify-center items-center gap-4 bg-[#6c3baa] py-8"
     >
       <h2 className="text-[#ffd966] font-bold text-3xl">Testimonials</h2>
       <Swiper
