@@ -70,7 +70,7 @@ const Signup = () => {
       }
 
       toast.success("Creating your account...");
-      setTimeout(() => navigate("/dashboard"), 3000);
+      setTimeout(() => navigate("/greetings"), 3000);
     } catch (error) {
       toast.error(error.message, { position: "top-center" });
     }

@@ -23,8 +23,8 @@ const Landing = () => {
       <Hero />
       <Howitworks />
       <Achievements />
-      {/* <Carousel /> */}
-      <About />
+      <Carousel />
+      {/* <About /> */}
       <Testimonials />
       <Footer />
     </main>

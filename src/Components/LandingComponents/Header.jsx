@@ -19,7 +19,7 @@ const Header = ({ openNav, handleOpenNav }) => {
       role="banner"
       className={`${
         openNav ? "" : ""
-      } flex justify-between items-center align-middle py-4 px-8 bg-white dark:bg-black w-full z-10 top-0 left-0`}
+      } flex sm:fixed justify-between items-center align-middle py-4 px-8 bg-white dark:bg-black w-full z-10 top-0 left-0`}
     >
       <Link to="/" className="text-[#6C3BAA] font-bold text-2xl hover:cursor-pointer select-none">
         LEXI
