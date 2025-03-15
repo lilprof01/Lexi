@@ -6,11 +6,12 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Link } from "react-router-dom";
 // import { FaGoogle } from 'react-icons/fa6'
 import { query, collection, where, getDocs } from "firebase/firestore";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [firstname, setFirstname] = useState("");
@@ -68,8 +69,8 @@ const Signup = () => {
         });
       }
 
-      toast.success("Creating your account...", { position: "top-center" });
-      navigate("/greetings");
+      toast.success("Creating your account...");
+      setTimeout(() => navigate("/dashboard"), 3000);
     } catch (error) {
       toast.error(error.message, { position: "top-center" });
     }
@@ -84,18 +85,26 @@ const Signup = () => {
       console.log("User signed in:", user);
 
       if (user) {
-        await setDoc(doc(db, "users", user.uid), {
-          firstName: "",
-          lastName: "",
-          username: user.displayName,
-          phone: "",
-          age: "",
-          gender: "",
-          email: user.email,
-          uid: "",
-        });
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+          // Existing user -> Navigate to dashboard
+          navigate("/dashboard");
+        } else {
+          await setDoc(doc(db, "users", user.uid), {
+            firstName: "",
+            lastName: "",
+            username: user.displayName,
+            phone: "",
+            age: "",
+            gender: "",
+            email: user.email,
+            uid: "",
+          });
+          navigate("/greetings");
+        }
       }
-      navigate("/greetings");
     } catch (error) {
       console.log("Error during sign-in:", error);
     }
@@ -109,18 +118,26 @@ const Signup = () => {
       console.log("User signed in:", user);
 
       if (user) {
-        await setDoc(doc(db, "users", user.uid), {
-          firstName: "",
-          lastName: "",
-          username: user.displayName,
-          phone: "",
-          age: "",
-          gender: "",
-          email: user.email,
-          uid: "",
-        });
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+          // Existing user -> Navigate to dashboard
+          navigate("/dashboard");
+        } else {
+          await setDoc(doc(db, "users", user.uid), {
+            firstName: "",
+            lastName: "",
+            username: user.displayName,
+            phone: "",
+            age: "",
+            gender: "",
+            email: user.email,
+            uid: "",
+          });
+          navigate("/greetings");
+        }
       }
-      navigate("/greetings");
     } catch (error) {
       console.log("Error during sign-in:", error);
     }
@@ -133,6 +150,7 @@ const Signup = () => {
           Create your Account
         </h2>
       </div>
+      <ToastContainer position="top-center" autoClose={3000} />
 
       <div className="mt-10 sm:mx-auto sm:w-full px-[50px] md:px-0 sm:max-w-sm">
         <form onSubmit={signUp} className="space-y-6" action="#" method="POST">
@@ -142,7 +160,7 @@ const Signup = () => {
                 type="text"
                 id="firstname"
                 value={firstname}
-                  onChange={(e) => setFirstname(e.target.value)}
+                onChange={(e) => setFirstname(e.target.value)}
                 required
                 placeholder="First Name"
                 className="block w-[180px] md:w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -151,7 +169,7 @@ const Signup = () => {
                 type="text"
                 id="lastname"
                 value={lastname}
-                  onChange={(e) => setLastname(e.target.value)}
+                onChange={(e) => setLastname(e.target.value)}
                 required
                 placeholder="Last Name"
                 className="block w-[180px] md:w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -163,7 +181,7 @@ const Signup = () => {
                 id="username"
                 required
                 value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder="Your Username"
                 className="block w-[180px] md:w-full rounded-md mt-2 bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />
@@ -172,7 +190,7 @@ const Signup = () => {
                 id="phone"
                 required
                 value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => setPhone(e.target.value)}
                 placeholder="Phone Number"
                 className="block w-[180px] md:w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />

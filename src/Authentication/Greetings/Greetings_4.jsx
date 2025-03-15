@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { auth, app, db } from "../Login/Firebase";
 import { getDoc, doc } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setDoc } from "firebase/firestore";
 // import { toast } from "react-toastify";
 
 const Greetings_4 = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [selectedReferral, setSelectedReferral] = useState(null);
-  const referrals = ["Social Media (Facebook, IG, X)", "Online Search", "Friends or family"];
+  const referrals = [
+    "Social Media (Facebook, IG, X)",
+    "Online Search",
+    "Friends or family",
+  ];
+  const navigate = useNavigate("");
 
   const fetchUserData = async () => {
     auth.onAuthStateChanged(async (user) => {
@@ -37,6 +42,7 @@ const Greetings_4 = () => {
       const userRef = doc(db, "UserResponses", user.uid);
       await setDoc(userRef, { userReferral: referral }, { merge: true });
       console.log("Response saved:", referral);
+      navigate("/dashboard");
     } else {
       console.log("User not signed in");
     }
@@ -65,18 +71,17 @@ const Greetings_4 = () => {
                 onClick={() => handleSelect(referral)}
                 className="mt-4 flex w-[300px] md:w-[500px] justify-left rounded-md px-3 py-4 text-lg/6 md:text-xl/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 style={{
-                  backgroundColor: selectedReferral === referral ? "black" : "white",
+                  backgroundColor:
+                    selectedReferral === referral ? "black" : "white",
                   color: selectedReferral === referral ? "white" : "black",
-                  border: selectedReferral === referral ? "none" : "2px solid black",
+                  border:
+                    selectedReferral === referral ? "none" : "2px solid black",
                 }}
               >
                 {referral}
               </button>
             ))}
           </div>
-          <Link to="/dashboard" className="mt-10 ml-[180px] md:ml-[380px] flex w-[150px] justify-center rounded-md bg-[#6C3BAA] px-3 py-2.5 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-            Next
-          </Link>
         </div>
       ) : (
         <h1>Loading user data...</h1>

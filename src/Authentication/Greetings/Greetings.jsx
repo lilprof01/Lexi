@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { auth, app, db } from "../Login/Firebase";
 import { getDoc, doc } from "firebase/firestore";
-import { Link } from "react-router-dom";
 import { setDoc } from "firebase/firestore";
-// import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Greetings = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [selectedLevel, setSelectedLevel] = useState(null);
   const levels = ["Beginner", "Intermediate", "Advanced"];
+  const navigate = useNavigate("");
 
   const fetchUserData = async () => {
     auth.onAuthStateChanged(async (user) => {
@@ -37,6 +38,7 @@ const Greetings = () => {
       const userRef = doc(db, "UserResponses", user.uid);
       await setDoc(userRef, { userLevel: level }, { merge: true });
       console.log("Response saved:", level);
+      navigate("/greetings-2");
     } else {
       console.log("User not signed in");
     }
@@ -74,12 +76,6 @@ const Greetings = () => {
               </button>
             ))}
           </div>
-          <Link
-            to="/greetings-2"
-            className="mt-10 ml-[180px] md:ml-[380px] flex w-[150px] justify-center rounded-md bg-[#6C3BAA] px-3 py-2.5 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Next
-          </Link>
         </div>
       ) : (
         <h1>Loading user data...</h1>

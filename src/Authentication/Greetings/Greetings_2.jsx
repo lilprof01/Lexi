@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth, app, db } from "../Login/Firebase";
 import { getDoc, doc } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setDoc } from "firebase/firestore";
 // import { toast } from "react-toastify";
 
@@ -9,6 +9,7 @@ const Greetings_2 = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const times = ["10-30 minutes", "30-60 minutes", "1-2 hours"];
+  const navigate = useNavigate("");
 
   const fetchUserData = async () => {
     auth.onAuthStateChanged(async (user) => {
@@ -37,6 +38,7 @@ const Greetings_2 = () => {
       const userRef = doc(db, "UserResponses", user.uid);
       await setDoc(userRef, { userTime: time }, { merge: true });
       console.log("Response saved:", time);
+      navigate("/greetings-3");
     } else {
       console.log("User not signed in");
     }
@@ -57,7 +59,8 @@ const Greetings_2 = () => {
           <div className="flex justify-center items-center mt-4 flex-col w-full">
             {/* replace language withe fetch from DB */}
             <p className="mt-8 w-[350px] md:w-full text-left text-[15px] md:text-[25px] font-bold tracking-tight text-black dark:text-white">
-              How many minutes per day can you dedicate to learning {userDetails.language}?
+              How many minutes per day can you dedicate to learning{" "}
+              {userDetails.language}?
             </p>
             {times.map((time) => (
               <button
@@ -74,9 +77,6 @@ const Greetings_2 = () => {
               </button>
             ))}
           </div>
-          <Link to="/greetings-3" className="mt-10 ml-[180px] md:ml-[380px] flex w-[150px] justify-center rounded-md bg-[#6C3BAA] px-3 py-2.5 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-            Next
-          </Link>
         </div>
       ) : (
         <h1>Loading user data...</h1>

@@ -12,6 +12,8 @@ import Greetings_2 from "./Authentication/Greetings/Greetings_2";
 import Greetings_3 from "./Authentication/Greetings/Greetings_3";
 import Greetings_4 from "./Authentication/Greetings/Greetings_4";
 import Dashboard from "./Pages/Dashboard";
+import LanguageSelection from "./Authentication/Signup/LanguageSelection";
+import VerifyEmail from "./Authentication/Greetings/VerifyEmail";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route path="/greetings-4" element={<Greetings_4 />} />
             <Route path="/forgotpassword" element={<ResetPassword />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/languageselection" element={<LanguageSelection />} />
+            <Route path="/verifyemail" element={<VerifyEmail />} />
           </Routes>
           <Darkmodetoggler />
         </ThemeProvider>
