@@ -7,7 +7,7 @@ const Achievements = () => {
   return (
     <section
       role="achievements"
-      className="achievements-section flex flex-col justify-center items-center gap-16 bg-[#fe4d01] text-[#f6f4ef] py-8"
+      className="achievements-section flex flex-col justify-center items-center gap-16 bg-[#6c3baa] text-[#f6f4ef] py-8"
     >
       <div className="h-full lg:w-[50%] w-[70%] m-auto lg:p-8 flex flex-col justify-center items-center gap-8">
         <h2 className="text-5xl lg:text-7xl text-center">The Proven Lexi Method</h2>

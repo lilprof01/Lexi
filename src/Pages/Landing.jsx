@@ -7,6 +7,7 @@ import Carousel from '../Components/LandingComponents/Carousel'
 import Testimonials from '../Components/LandingComponents/Testimonials'
 import Footer from '../Components/LandingComponents/Footer'
 import MobileNav from '../Components/LandingComponents/MobileNav'
+import About from '../Components/LandingComponents/About'
 
 const Landing = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -22,7 +23,8 @@ const Landing = () => {
       <Hero />
       <Howitworks />
       <Achievements />
-      <Carousel />
+      {/* <Carousel /> */}
+      <About />
       <Testimonials />
       <Footer />
     </main>
