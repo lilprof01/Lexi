@@ -3,7 +3,6 @@ import Button from "./Button";
 import secImage1 from "/mockup1.webp";
 import secImage2 from "/guide.webp";
 import secImage3 from "/community.webp";
-import { Link } from "react-router-dom";
 
 const Howitworks = () => {
   return (
@@ -29,7 +28,6 @@ const Howitworks = () => {
           }}
           className="h-full w-full  rounded-2xl"
         >
-          {/* <img src={dummy} alt="dummy" className="h-full w-full bg-center bg-cover" /> */}
         </div>
       </div>
       <div className="h-[70vh] w-full flex lg:flex-row flex-col-reverse justify-center items-center gap-10">

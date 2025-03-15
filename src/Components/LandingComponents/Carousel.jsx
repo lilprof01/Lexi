@@ -31,7 +31,7 @@ const Carousel = () => {
       className="h-screen sm:h-[90vh] flex flex-col justify-center items-center gap-10 p-8"
     >
       <h2 className="font-bold text-3xl">Features</h2>
-      <div className="w-full h-full grid md:grid-cols-3 gap-8">
+      <div className="w-full h-full grid lg:grid-cols-3 gap-8">
         {features.map((feature, index) => (
           <div key={index} className="flip-card">
             <div className="flip-card-inner">

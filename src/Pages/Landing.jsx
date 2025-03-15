@@ -8,6 +8,8 @@ import Testimonials from '../Components/LandingComponents/Testimonials'
 import Footer from '../Components/LandingComponents/Footer'
 import MobileNav from '../Components/LandingComponents/MobileNav'
 import About from '../Components/LandingComponents/About'
+import Contact from '../Components/LandingComponents/Contact'
+import Copyright from '../Components/LandingComponents/Copyright'
 
 const Landing = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -26,7 +28,9 @@ const Landing = () => {
       <Carousel />
       {/* <About /> */}
       <Testimonials />
+      <Contact />
       <Footer />
+      <Copyright />
     </main>
   )
 }
