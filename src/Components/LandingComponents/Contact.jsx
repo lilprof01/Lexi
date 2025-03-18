@@ -14,7 +14,7 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+    const response = await fetch("https://formspree.io/f/mnnqplbn", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -55,7 +55,7 @@ function Contact() {
             placeholder="Your Name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full p-2 border rounded placeholder:text-[grey] dark:placeholder:text-[#f6f4ef]"
+            className="w-full p-2 rounded placeholder:text-[grey] dark:placeholder:text-[#f6f4ef6d] outline outline-[#6c3baa]"
             required
           />
           <input
@@ -64,7 +64,7 @@ function Contact() {
             placeholder="Your Email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full p-2 border rounded placeholder:text-[grey] dark:placeholder:text-[#f6f4ef]"
+            className="w-full p-2 rounded placeholder:text-[grey] dark:placeholder:text-[#f6f4ef6d] outline outline-[#6c3baa]"
             required
           />
           <textarea
@@ -72,7 +72,7 @@ function Contact() {
             placeholder="Your Message"
             value={formData.message}
             onChange={handleChange}
-            className="w-full p-2 border rounded placeholder:text-[grey] dark:placeholder:text-[#f6f4ef] h-24 resize-none"
+            className="w-full p-2 rounded placeholder:text-[grey] dark:placeholder:text-[#f6f4ef6d] h-24 resize-none outline outline-[#6c3baa]"
             required
           ></textarea>
           <button

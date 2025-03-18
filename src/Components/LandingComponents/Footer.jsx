@@ -55,7 +55,7 @@ const Footer = () => {
         <div className="flex flex-col gap-3">
           <h4 className="font-semibold">Quick Links</h4>
           <ul className="flex flex-col gap-1">
-            <li>About</li>
+            <li>Features</li>
             <li>Terms of Service</li>
             <li>Privacy Policy</li>
             <li>Contact</li>
