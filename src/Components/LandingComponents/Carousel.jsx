@@ -37,7 +37,7 @@ const Carousel = () => {
             <div className="flip-card-inner">
               {/* Front Side */}
               <div
-                className="flip-card-front bg-cover bg-center bounce-up"
+                className="flip-card-front bg-cover bg-center"
                 style={{ backgroundImage: feature.frontImage }}
               >
                 <h3 className="text-xl font-semibold text-white p-4 bg-black bg-opacity-50 rounded-tl-2xl rounded-tr-2xl">
