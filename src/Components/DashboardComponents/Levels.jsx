@@ -8,9 +8,9 @@ const Levels = ({ user }) => {
         <h3 className="text-xl">Please select your level</h3>
       </div>
       <div className="w-full flex flex-col justify-center items-center align-middle gap-8">
-        <div className="py-4 w-[50%] border-2 border-black dark:shadow-md shadow-purple-500 hover:cursor-pointer rounded-full text-2xl flex justify-center items-center align-middle">Beginner</div>
-        <div className="py-4 w-[50%] border-2 border-black dark:shadow-md shadow-purple-500 hover:cursor-pointer rounded-full text-2xl flex justify-center items-center align-middle">Intermediate</div>
-        <div className="py-4 w-[50%] border-2 border-black dark:shadow-md shadow-purple-500 hover:cursor-pointer rounded-full text-2xl flex justify-center items-center align-middle">Advanced</div>
+        <div className="py-4 w-[50%] border-2 border-black active:scale-95 shadow-md shadow-[grey] dark:shadow-purple-500 hover:cursor-pointer rounded-full text-2xl flex justify-center items-center align-middle">Beginner</div>
+        <div className="py-4 w-[50%] border-2 border-black active:scale-95 shadow-md shadow-[grey] dark:shadow-purple-500 hover:cursor-pointer rounded-full text-2xl flex justify-center items-center align-middle">Intermediate</div>
+        <div className="py-4 w-[50%] border-2 border-black active:scale-95 shadow-md shadow-[grey] dark:shadow-purple-500 hover:cursor-pointer rounded-full text-2xl flex justify-center items-center align-middle">Advanced</div>
       </div>
     </div>
   );
