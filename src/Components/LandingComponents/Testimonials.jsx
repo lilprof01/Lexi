@@ -14,7 +14,7 @@ const Testimonials = () => {
       role="testimonials"
       className="testimonials-section h-screen flex flex-col justify-center items-center gap-4 bg-[#6c3baa] py-8"
     >
-      <h2 className="text-[#ffd966] font-bold text-3xl">Testimonials</h2>
+      <h2 className="text-white font-bold text-3xl">Testimonials</h2>
       <Swiper
         modules={[Pagination]}
         pagination={{ clickable: true }}
