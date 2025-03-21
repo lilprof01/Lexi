@@ -26,7 +26,7 @@ const Howitworks = () => {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-          className="h-full w-full  rounded-2xl"
+          className="h-full w-full rounded-2xl"
         >
         </div>
       </div>

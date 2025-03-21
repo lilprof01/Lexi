@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer
       role="footer"
-      className="footer-section flex flex-col lg:flex-row items-center justify-between gap-20 p-32 text-center lg:text-left"
+      className="footer-section flex flex-col lg:flex-row items-center justify-between gap-20 p-8 sm:p-32"
     >
       <div className="w-full flex flex-col align-middle gap-6">
         <h3 className="text-4xl">Learn with Lexi</h3>
@@ -31,22 +31,22 @@ const Footer = () => {
           <h4 className="font-semibold">Socials</h4>
           <ul className="flex flex-col gap-1">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-              <li className="flex gap-1 justify-center lg:justify-start items-center align-middle">
+              <li className="flex gap-1 items-center align-middle">
                 Facebook<FaFacebook />
               </li>
             </a>
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-              <li className="flex gap-1 justify-center lg:justify-start items-center align-middle">
+              <li className="flex gap-1 items-center align-middle">
                 Instagram<FaInstagram />
               </li>
             </a>
             <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-              <li className="flex gap-1 justify-center lg:justify-start items-center align-middle">
+              <li className="flex gap-1 items-center align-middle">
                 Twitter<FaXTwitter />
               </li>
             </a>
             <a href="https://www.lexi.com" target="_blank" rel="noopener noreferrer">
-              <li className="flex gap-1 justify-center lg:justify-start items-center align-middle">
+              <li className="flex gap-1 items-center align-middle">
                 Lexi<FaGlobe />
               </li>
             </a>
