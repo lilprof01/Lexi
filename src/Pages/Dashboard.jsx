@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { auth } from "../Authentication/Login/Firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../Authentication/Login/Firebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Header from "../Components/DashboardComponents/Header";
@@ -13,7 +14,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged( async (user) => {
       if (user) {
         setUser(user);
         if (user.emailVerified) {
@@ -23,6 +24,28 @@ const Dashboard = () => {
             position: "top-center",
           });
           navigate("/verifyemail"); // Redirect to a verification page
+        }
+        try {
+          // 🔍 Debugging: Log the auth user before fetching Firestore data
+          console.log("Auth user:", user);
+
+          // Fetch additional user data from Firestore
+          const userDocRef = doc(db, "users", user.uid);
+          const userDocSnap = await getDoc(userDocRef);
+
+          if (userDocSnap.exists()) {
+            const userData = userDocSnap.data();
+            console.log("Firestore user data:", userData);
+
+            setUser({ uid: user.uid, email: user.email, ...userData });
+            setIsVerified(true);
+          } else {
+            console.warn("User data not found in Firestore!");
+            toast.error("User data not found in Firestore.");
+            setUser({ uid: user.uid, email: user.email }); // Fallback
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
         }
       } else {
         navigate("/login"); // Redirect if no user is signed in
@@ -42,7 +65,8 @@ const Dashboard = () => {
         </main>
       ) : (
         <h1>Verifying email...</h1>
-      )}
+      )
+      }
     </div>
   );
 };

@@ -105,7 +105,7 @@ const Login = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm/6 font-medium text-gray-900"
+              className="block text-sm/6 font-medium text-gray-900 dark:text-white"
             >
               Email address
             </label>
@@ -126,7 +126,7 @@ const Login = () => {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="block text-sm/6 font-medium text-gray-900"
+                className="block text-sm/6 font-medium text-gray-900 dark:text-white"
               >
                 Password
               </label>
@@ -177,7 +177,7 @@ const Login = () => {
           </button>
         </div>
 
-        <p className="mt-4 text-center text-sm/6 text-gray-500">
+        <p className="mt-4 text-center text-sm/6 text-gray-500 dark:text-white">
           Not one of us?
           <Link
             to="/signup"
@@ -187,9 +187,6 @@ const Login = () => {
           </Link>
         </p>
       </div>
-      <button onClick={() => toast.success("Toast is working!")}>
-        Test Toast
-      </button>
     </div>
   );
 };
