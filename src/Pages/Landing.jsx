@@ -10,6 +10,7 @@ import MobileNav from '../Components/LandingComponents/MobileNav'
 import About from '../Components/LandingComponents/About'
 import Contact from '../Components/LandingComponents/Contact'
 import Copyright from '../Components/LandingComponents/Copyright'
+import Newhero from '../Components/LandingComponents/Newhero'
 
 const Landing = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -22,6 +23,7 @@ const Landing = () => {
     <main role='main' className='bg-[#f6f4ef] dark:bg-[#121212] dark:text-white'>
       <Header handleOpenNav={handleOpenNav} openNav={openNav} />
       {openNav && <MobileNav openNav={openNav} />}
+      <Newhero />
       <Hero />
       <Howitworks />
       <Achievements />

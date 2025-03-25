@@ -1,6 +1,9 @@
 import React from "react";
 import Menu from "./Menu";
 import { FaUser } from "react-icons/fa";
+import { FaGear } from 'react-icons/fa6';
+import { FaDashcube } from "react-icons/fa";
+import { MdDashboard } from 'react-icons/md';
 import { Link } from "react-router-dom";
 
 const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
@@ -28,10 +31,10 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
           ""
         )}
       </div>
-      <div className="py-8 px-2 h-[80%] flex  flex-col justify-between items-center align-middle">
+      <div className="py-8 px-2 h-[80%] flex  flex-col justify-between align-middle">
         <Menu
-          icon={<FaUser className="h-6 w-6" />}
-          text="select"
+          icon={<MdDashboard className="h-6 w-6" />}
+          text="Dashboard"
           isCollapsed={isCollapsed}
         />
         <Menu
@@ -55,12 +58,12 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
           isCollapsed={isCollapsed}
         />
         <Menu
-          icon={<FaUser className="h-6 w-6" />}
-          text="select"
+          icon={<FaGear className="h-6 w-6" />}
+          text="Settings"
           isCollapsed={isCollapsed}
         />
       </div>
-      <div className="h-[10%] bg-purple-900 rounded-tr-2xl rounded-tl-2xl flex justify-center items-center align-middle gap-8">
+      <div className={`h-[10%] bg-purple-900 text-white rounded-tr-2xl rounded-tl-2xl flex ${isCollapsed ? 'justify-center' : 'justify-start'} p-3 items-center align-middle gap-8`}>
         <FaUser className="h-6 w-6" />
         <p
           className={`text-xl ${

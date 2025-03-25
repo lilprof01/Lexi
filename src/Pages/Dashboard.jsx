@@ -5,9 +5,11 @@ import { toast } from "react-toastify";
 import Header from "../Components/DashboardComponents/Header";
 import Sidebar from "../Components/DashboardComponents/Sidebar";
 import Levels from "../Components/DashboardComponents/Levels";
+import MobileNav from "../Components/DashboardComponents/MobileNav";
 
 const Dashboard = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [openNav, setOpenNav] = useState(false);
   const [user, setUser] = useState(null);
   const [isVerified, setIsVerified] = useState(false);
   const navigate = useNavigate();
@@ -35,10 +37,15 @@ const Dashboard = () => {
   return (
     <div>
       {isVerified ? (
-        <main className={`sm:grid ${isCollapsed ? 'grid-cols-[80px_1fr]' : 'grid-cols-[200px_1fr]'} grid-rows-[80px_1fr] h-screen transition-all duration-300 dark:bg-[#121212] dark:text-white`}>
+        <main
+          className={`sm:grid ${
+            isCollapsed ? "grid-cols-[80px_1fr]" : "grid-cols-[200px_1fr]"
+          } grid-rows-[80px_1fr] h-screen transition-all duration-300 dark:bg-[#121212] dark:text-white`}
+        >
           <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
-          <Header />
+          <Header openNav={openNav} setOpenNav={setOpenNav} />
           <Levels user={user} />
+          {openNav && <MobileNav openNav={openNav} />}
         </main>
       ) : (
         <h1>Verifying email...</h1>
