@@ -24,7 +24,7 @@ const Levels = ({ user }) => {
           <div
             key={level}
             onClick={() => handleLevelSelect(level.toLowerCase())}
-            className="py-4 w-[50%] border-2 border-black active:scale-95 shadow-md shadow-[grey] select-none dark:shadow-purple-500 hover:cursor-pointer rounded-full text-2xl flex justify-center items-center align-middle"
+            className="py-4 w-full sm:w-[50%] border-2 border-black active:scale-95 shadow-md shadow-[grey] select-none dark:shadow-purple-500 hover:cursor-pointer rounded-full text-2xl flex justify-center items-center align-middle"
           >
             {level}
           </div>
