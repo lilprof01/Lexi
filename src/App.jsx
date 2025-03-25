@@ -14,6 +14,9 @@ import Greetings_4 from "./Authentication/Greetings/Greetings_4";
 import Dashboard from "./Pages/Dashboard";
 import LanguageSelection from "./Authentication/Signup/LanguageSelection";
 import VerifyEmail from "./Authentication/Greetings/VerifyEmail";
+import AddWords from "./Admin/AddWords";
+import PlayGames from "./Pages/PlayGames";
+import Leaderboard from "./Pages/Leaderboard";
 
 function App() {
   return (
@@ -32,6 +35,9 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/languageselection" element={<LanguageSelection />} />
             <Route path="/verifyemail" element={<VerifyEmail />} />
+            <Route path="/addwords" element={<AddWords />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/lexigame" element={<PlayGames selectedLanguage="german" selectedDifficulty="beginner" />} />
           </Routes>
           <Darkmodetoggler />
         </ThemeProvider>
