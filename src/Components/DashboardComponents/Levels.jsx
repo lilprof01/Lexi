@@ -14,7 +14,7 @@ const Levels = ({ user }) => {
   };
 
   return (
-    <div className="col-start-2 p-16 transition-all duration-300 flex flex-col justify-start items-center text-center align-middle gap-8">
+    <div className="col-start-2 p-16 transition-all duration-300 flex flex-col justify-start items-center text-center align-middle gap-8 dark:bg-[#121212]">
       <div>
          <h1 className="text-3xl">Welcome {user.username}</h1>
         <h3 className="text-xl">Please select your level</h3>
