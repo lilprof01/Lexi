@@ -89,7 +89,7 @@ export default function AddWords() {
           </div>
           <input
             type="text"
-            id="password"
+            id="word"
             value={word}
             onChange={(e) => setWord(e.target.value)}
             required
@@ -99,7 +99,7 @@ export default function AddWords() {
 
           <input
             type="text"
-            id="password"
+            id="correctword"
             value={correctTranslation}
             onChange={(e) => setCorrectTranslation(e.target.value)}
             required

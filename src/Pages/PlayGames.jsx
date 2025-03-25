@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth, db } from "../Authentication/Login/Firebase";
-import { collection, getDocs, addDoc, doc } from "firebase/firestore";
+import { collection, getDocs, getDoc, addDoc, doc } from "firebase/firestore";
 
 export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
   const [questions, setQuestions] = useState([]);
@@ -47,6 +47,21 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
     };
     fetchQuestions();
   }, [selectedLanguage, selectedDifficulty]);
+
+  const fetchUsername = async (userId) => {
+    try {
+      const userDoc = await getDoc(doc(db, "users", userId)); 
+      if (userDoc.exists()) {
+        console.log("Fetched user document:", userDoc.data()); // Log the data
+        return userDoc.data().username || "Anonymous"; 
+      } else {
+        console.warn(`No user document found for userId: ${userId}`);
+      }
+    } catch (error) {
+      console.error("Error fetching username:", error);
+    }
+    return "Anonymous";
+  };
 
   useEffect(() => {
     if (timeLeft === 0) {
@@ -105,7 +120,7 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
   }
 
   const handleGameOver = async () => {
-    setGameOver(true); // ✅ Move state update to the top to keep hooks order consistent
+    setGameOver(true); // 
 
     if (!auth.currentUser) {
       console.error("No authenticated user!");
@@ -113,9 +128,12 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
     }
 
     try {
+      const userId = auth.currentUser.uid;
+      const username = await fetchUsername(userId);
+
       const scoreData = {
-        userId: auth.currentUser.uid,
-        username: auth.currentUser.displayName,
+        userId,
+        username,
         score,
         selectedLanguage,
         selectedDifficulty,
