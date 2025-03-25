@@ -11,38 +11,40 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-        try {
-          console.log(`Fetching from path: lexi/${selectedLanguage}/${selectedDifficulty}`);
-      
-          const querySnapshot = await getDocs(
-            collection(db, `lexi/${selectedLanguage}/${selectedDifficulty}`)
-          );
-      
-          if (querySnapshot.empty) {
-            console.warn("No questions found in Firestore!");
-          }
-      
-          let words = [];
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            console.log("Fetched document:", data); // Log each document
-      
-            words.push({
-              word: data.word,
-              correctTranslation: data.correctTranslation,
-              options: shuffleOptions([
-                data.correctTranslation,
-                ...data.incorrectOptions,
-              ]),
-            });
-          });
-      
-          console.log("Final questions array:", words);
-          setQuestions(shuffleArray(words));
-        } catch (error) {
-          console.error("Error fetching questions:", error);
+      try {
+        console.log(
+          `Fetching from path: lexi/${selectedLanguage}/${selectedDifficulty}`
+        );
+
+        const querySnapshot = await getDocs(
+          collection(db, `lexi/${selectedLanguage}/${selectedDifficulty}`)
+        );
+
+        if (querySnapshot.empty) {
+          console.warn("No questions found in Firestore!");
         }
-      };
+
+        let words = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          console.log("Fetched document:", data); // Log each document
+
+          words.push({
+            word: data.word,
+            correctTranslation: data.correctTranslation,
+            options: shuffleOptions([
+              data.correctTranslation,
+              ...data.incorrectOptions,
+            ]),
+          });
+        });
+
+        console.log("Final questions array:", words);
+        setQuestions(shuffleArray(words));
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+      }
+    };
     fetchQuestions();
   }, [selectedLanguage, selectedDifficulty]);
 
@@ -79,20 +81,22 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
     setTimeLeft(10);
     setGameOver(false);
   };
-  
+
   const handleBackToHome = () => {
     window.location.href = "/dashboard"; // Replace with your actual dashboard route
   };
 
-  
-
   if (gameOver) {
     return (
-      <div>
-        <h2>Game Over! Your Final Score: {score}</h2>
-        <button onClick={handleReplay}>Replay</button>
-        <button onClick={handleBackToHome}>Back to Home</button>
-      </div>
+      <main className="flex justify-center items-center align-middle h-screen">
+        <div className="shadow-2xl shadow-red-600 h-[60%] w-[60%] flex flex-col justify-center items-center align-middle gap-4 rounded-3xl">
+          <h2 className="text-2xl">Game Over! Your Final Score: {score}</h2>
+          <div className="flex justify-center items-center align-middle gap-4">
+            <button onClick={handleReplay}>Replay</button>
+            <button onClick={handleBackToHome}>Back to Home</button>
+          </div>
+        </div>
+      </main>
     );
   }
 
@@ -102,12 +106,12 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
 
   const handleGameOver = async () => {
     setGameOver(true); // ✅ Move state update to the top to keep hooks order consistent
-  
+
     if (!auth.currentUser) {
       console.error("No authenticated user!");
       return;
     }
-  
+
     try {
       const scoreData = {
         userId: auth.currentUser.uid,
@@ -117,7 +121,7 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
         selectedDifficulty,
         timestamp: new Date(),
       };
-  
+
       await addDoc(collection(db, "userScores"), scoreData);
       console.log("Score saved successfully:", scoreData);
     } catch (error) {
@@ -125,18 +129,42 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
     }
   };
 
-
   return (
-    <div>
-      <h2>What is the meaning of "{questions[currentQuestionIndex].word}"?</h2>
-      <p>Time Left: {timeLeft}s</p>
-      <p>Score: {score}</p>
-      {questions[currentQuestionIndex].options.map((option, index) => (
-        <button key={index} onClick={() => handleAnswerClick(option)}>
-          {option}
-        </button>
-      ))}
-    </div>
+    <main className="h-screen flex flex-col items-center align-middle justify-start gap-10">
+      <div className="top flex justify-between items-center align-middle p-4 w-full">
+        <p>
+          Time Left:{" "}
+          <span className={`${timeLeft <= 5 ? "text-red-500" : ""}`}>
+            {timeLeft}s
+          </span>
+        </p>
+        <p>Score: {score}</p>
+      </div>
+
+      <div className="body w-[60%] h-full p-10 flex flex-col justify-start items-center align-middle gap-12">
+        <h2 className="text-6xl text-center">
+          What is the meaning of "{questions[currentQuestionIndex].word}"?
+        </h2>
+
+        <div className="options grid grid-cols-2 gap-4 w-full">
+          {questions[currentQuestionIndex].options.map((option, index) => (
+            <div className="">
+              <button
+                key={index}
+                onClick={() => handleAnswerClick(option)}
+                className={`py-2 px-4 flex justify-center items-center align-middle border border-black rounded-full w-full h-20 active:scale-95 ${
+                  option === questions[currentQuestionIndex].correctTranslation
+                    ? "active:bg-green-500 active:text-white"
+                    : "active:bg-red-500 active:text-white"
+                }`}
+              >
+                {option}
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
   );
 }
 
