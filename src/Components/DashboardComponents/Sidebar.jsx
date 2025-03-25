@@ -1,12 +1,17 @@
 import React from "react";
 import Menu from "./Menu";
 import { FaUser } from "react-icons/fa";
-import { FaGear } from 'react-icons/fa6';
+import { FaGear } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
 import { MdHome, MdLeaderboard, MdDisplaySettings } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
+const Sidebar = ({
+  isCollapsed,
+  setIsCollapsed,
+  selectedMenu,
+  handleSelectedMenu,
+}) => {
   return (
     <aside className="border border-[#6c3baa] row-span-2 transition-all duration-300 hidden sm:flex flex-col justify-between ">
       <div
@@ -24,7 +29,10 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
         </div>
 
         {!isCollapsed ? (
-          <Link to="/" className="mr-4 text-center text-3xl text-purple-800 transition-all duration-300">
+          <Link
+            to="/"
+            className="mr-4 text-center text-3xl text-purple-800 transition-all duration-300"
+          >
             Lexi
           </Link>
         ) : (
@@ -36,26 +44,33 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
           icon={<MdHome className="h-6 w-6" />}
           text="Home"
           isCollapsed={isCollapsed}
+          selectedMenu={selectedMenu === "home"}
+          handleSelectedMenu={() => handleSelectedMenu("home")}
         />
         <Menu
           icon={<MdLeaderboard className="h-6 w-6" />}
           text="Leaderboard"
           isCollapsed={isCollapsed}
+          selectedMenu={selectedMenu === "leaderboard"}
+          handleSelectedMenu={() => handleSelectedMenu("leaderboard")}
         />
         <Menu
           icon={<FaUser className="h-6 w-6" />}
           text="select"
           isCollapsed={isCollapsed}
+          handleSelectedMenu={() => handleSelectedMenu("home")}
         />
         <Menu
           icon={<MdDisplaySettings className="h-6 w-6" />}
           text="Display"
           isCollapsed={isCollapsed}
+          handleSelectedMenu={() => handleSelectedMenu("display")}
         />
         <Menu
           icon={<FaGear className="h-6 w-6" />}
           text="Settings"
           isCollapsed={isCollapsed}
+          handleSelectedMenu={() => handleSelectedMenu("settings")}
         />
         <Menu
           icon={<MdLogout className="h-6 w-6" />}
@@ -63,7 +78,12 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
           isCollapsed={isCollapsed}
         />
       </div>
-      <div className={`h-[10%] bg-purple-900 text-white rounded-tr-2xl rounded-tl-2xl flex ${isCollapsed ? 'justify-center' : 'justify-start'} p-3 items-center align-middle gap-8 hover:cursor-pointer`}>
+      <div
+        handleSelectedMenu={() => handleSelectedMenu("profile")}
+        className={`h-[10%] bg-purple-900 text-white rounded-tr-2xl rounded-tl-2xl flex ${
+          isCollapsed ? "justify-center" : "justify-start"
+        } p-3 items-center align-middle gap-8 hover:cursor-pointer`}
+      >
         <FaUser className="h-6 w-6" />
         <p
           className={`text-xl ${
