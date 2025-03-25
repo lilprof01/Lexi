@@ -1,17 +1,18 @@
 import React from "react";
 
-const Menu = ({ icon, text, isCollapsed }) => {
+const Menu = ({ icon, text, isCollapsed, selectedMenu, handleSelectedMenu }) => {
   return (
     <div
-      className={`w-[80%] rounded-2xl h-[10%] flex ${
-        isCollapsed ? "" : "gap-8"
-      } p-3 items-center align-middle transition-all duration-300 hover:bg-[#6c3baa6d] hover:cursor-pointer`}
+      onClick={handleSelectedMenu}
+      className={` rounded-2xl h-[10%] flex ${
+        isCollapsed ? "justify-center" : "gap-4"
+      } p-3 items-center align-middle hover:bg-[#6c3baa6d] hover:cursor-pointer ${selectedMenu ? 'bg-purple-300' : ''}`}
     >
       {icon}
       <p
-        className={`text-xl ${
-          isCollapsed ? "hidden" : "block"
-        } transition-all duration-500`}
+        className={`text-lg ${
+          isCollapsed ? "hidden" : "block transition-all duration-1000"
+        }`}
       >
         {text}
       </p>

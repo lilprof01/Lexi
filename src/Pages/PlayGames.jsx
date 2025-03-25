@@ -103,11 +103,15 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
 
   if (gameOver) {
     return (
-      <div>
-        <h2>Game Over! Your Final Score: {score}</h2>
-        <button onClick={handleReplay}>Replay</button>
-        <button onClick={handleBackToHome}>Back to Home</button>
-      </div>
+      <main className="flex justify-center items-center align-middle h-screen">
+        <div className="shadow-2xl shadow-purple-600 p-6 h-[60%] sm:w-[60%] flex flex-col justify-center items-center align-middle gap-4 rounded-3xl">
+          <h2 className="text-2xl">Game Over! Your Final Score: {score}</h2>
+          <div className="flex justify-center items-center align-middle gap-4">
+            <button onClick={handleReplay}>Replay</button>
+            <button onClick={handleBackToHome}>Home</button>
+          </div>
+        </div>
+      </main>
     );
   }
 
@@ -144,16 +148,41 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
   };
 
   return (
-    <div>
-      <h2>What is the meaning of "{questions[currentQuestionIndex].word}"?</h2>
-      <p>Time Left: {timeLeft}s</p>
-      <p>Score: {score}</p>
-      {questions[currentQuestionIndex].options.map((option, index) => (
-        <button key={index} onClick={() => handleAnswerClick(option)}>
-          {option}
-        </button>
-      ))}
-    </div>
+    <main className="h-screen flex flex-col items-center align-middle justify-start gap-10">
+      <div className="top flex justify-between items-center align-middle p-4 w-full">
+        <p>
+          Time Left:{" "}
+          <span className={`${timeLeft <= 5 ? "text-red-500" : ""}`}>
+            {timeLeft}s
+          </span>
+        </p>
+        <p>Score: {score}</p>
+      </div>
+
+      <div className="body sm:w-[60%] h-full p-10 flex flex-col justify-start items-center align-middle gap-12">
+        <h2 className="text-2xl lg:text-6xl text-center">
+          What is the meaning of "{questions[currentQuestionIndex].word}"?
+        </h2>
+
+        <div className="options grid sm:grid-cols-2 gap-4 w-full">
+          {questions[currentQuestionIndex].options.map((option, index) => (
+            <div className="">
+              <button
+                key={index}
+                onClick={() => handleAnswerClick(option)}
+                className={`py-2 px-4 flex justify-center items-center align-middle border border-black rounded-full w-full h-20 active:scale-95 hover:cursor-pointer ${
+                  option === questions[currentQuestionIndex].correctTranslation
+                    ? "active:bg-green-500 active:text-white"
+                    : "active:bg-red-500 active:text-white"
+                }`}
+              >
+                {option}
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
   );
 }
 
