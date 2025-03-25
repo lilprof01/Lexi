@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth, db } from "../Authentication/Login/Firebase";
-import { collection, getDocs, addDoc, doc } from "firebase/firestore";
+import { collection, getDocs, getDoc, addDoc, doc } from "firebase/firestore";
 
 export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
   const [questions, setQuestions] = useState([]);
@@ -11,40 +11,57 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-        try {
-          console.log(`Fetching from path: lexi/${selectedLanguage}/${selectedDifficulty}`);
-      
-          const querySnapshot = await getDocs(
-            collection(db, `lexi/${selectedLanguage}/${selectedDifficulty}`)
-          );
-      
-          if (querySnapshot.empty) {
-            console.warn("No questions found in Firestore!");
-          }
-      
-          let words = [];
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            console.log("Fetched document:", data); // Log each document
-      
-            words.push({
-              word: data.word,
-              correctTranslation: data.correctTranslation,
-              options: shuffleOptions([
-                data.correctTranslation,
-                ...data.incorrectOptions,
-              ]),
-            });
-          });
-      
-          console.log("Final questions array:", words);
-          setQuestions(shuffleArray(words));
-        } catch (error) {
-          console.error("Error fetching questions:", error);
+      try {
+        console.log(
+          `Fetching from path: lexi/${selectedLanguage}/${selectedDifficulty}`
+        );
+
+        const querySnapshot = await getDocs(
+          collection(db, `lexi/${selectedLanguage}/${selectedDifficulty}`)
+        );
+
+        if (querySnapshot.empty) {
+          console.warn("No questions found in Firestore!");
         }
-      };
+
+        let words = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          console.log("Fetched document:", data); // Log each document
+
+          words.push({
+            word: data.word,
+            correctTranslation: data.correctTranslation,
+            options: shuffleOptions([
+              data.correctTranslation,
+              ...data.incorrectOptions,
+            ]),
+          });
+        });
+
+        console.log("Final questions array:", words);
+        setQuestions(shuffleArray(words));
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+      }
+    };
     fetchQuestions();
   }, [selectedLanguage, selectedDifficulty]);
+
+  const fetchUsername = async (userId) => {
+    try {
+      const userDoc = await getDoc(doc(db, "users", userId)); 
+      if (userDoc.exists()) {
+        console.log("Fetched user document:", userDoc.data()); // Log the data
+        return userDoc.data().username || "Anonymous"; 
+      } else {
+        console.warn(`No user document found for userId: ${userId}`);
+      }
+    } catch (error) {
+      console.error("Error fetching username:", error);
+    }
+    return "Anonymous";
+  };
 
   useEffect(() => {
     if (timeLeft === 0) {
@@ -79,12 +96,10 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
     setTimeLeft(10);
     setGameOver(false);
   };
-  
+
   const handleBackToHome = () => {
     window.location.href = "/dashboard"; // Replace with your actual dashboard route
   };
-
-  
 
   if (gameOver) {
     return (
@@ -101,30 +116,32 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
   }
 
   const handleGameOver = async () => {
-    setGameOver(true); // ✅ Move state update to the top to keep hooks order consistent
-  
+    setGameOver(true); // 
+
     if (!auth.currentUser) {
       console.error("No authenticated user!");
       return;
     }
-  
+
     try {
+      const userId = auth.currentUser.uid;
+      const username = await fetchUsername(userId);
+
       const scoreData = {
-        userId: auth.currentUser.uid,
-        username: auth.currentUser.displayName,
+        userId,
+        username,
         score,
         selectedLanguage,
         selectedDifficulty,
         timestamp: new Date(),
       };
-  
+
       await addDoc(collection(db, "userScores"), scoreData);
       console.log("Score saved successfully:", scoreData);
     } catch (error) {
       console.error("Error saving score:", error);
     }
   };
-
 
   return (
     <div>
