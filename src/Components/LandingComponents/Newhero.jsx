@@ -9,7 +9,7 @@ const Newhero = () => {
       <div className="flex flex-col items-center align-middle gap-10 w-[60%]">
         <h1 className="text-6xl">Lexi</h1>
         <p className="text-xl">
-          Designed to help users learn new languages in a fun and interactive way.
+          Designed to help users practice new languages in a fun and interactive way.
         </p>
       </div>
     </section>
