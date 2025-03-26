@@ -1,23 +1,62 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { auth, db } from "../Authentication/Login/Firebase";
 import { collection, getDocs, getDoc, addDoc, doc } from "firebase/firestore";
+import { Navigate, useNavigate } from "react-router-dom";
 
-export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
+export default function PlayGames({ selectedDifficulty }) {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(10);
   const [gameOver, setGameOver] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
+  const [username, setUsername] = useState("Anonymous");
+  const navigate = useNavigate("")
 
   useEffect(() => {
+    const fetchUserData = async (userId) => {
+      try {
+        const userDoc = await getDoc(doc(db, "users", userId));
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          console.log("Fetched user document:", data);
+          return {
+            username: data.username || "Anonymous",
+            selectedLanguage: data.language || "German", // Default to German
+          };
+        } else {
+          console.warn(`No user document found for userId: ${userId}`);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+      return {
+        username: "Anonymous",
+        selectedLanguage: "German", // Default in case of error
+      };
+    };
+
+    if (auth.currentUser) {
+      fetchUserData(auth.currentUser.uid).then((userData) => {
+        setUsername(userData.username);
+        setSelectedLanguage(userData.selectedLanguage);
+        console.log("Selected Language:", userData.selectedLanguage);
+      });
+    }
+  }, []);
+
+  // Fetch questions after selectedLanguage is set
+  useEffect(() => {
     const fetchQuestions = async () => {
+      if (!selectedLanguage) return; // Wait until language is set
+
       try {
         console.log(
           `Fetching from path: lexi/${selectedLanguage}/${selectedDifficulty}`
         );
 
         const querySnapshot = await getDocs(
-          collection(db, `lexi/${selectedLanguage}/${selectedDifficulty}`)
+          collection(db, `lexi/${selectedLanguage.toLowerCase()}/${selectedDifficulty}`)
         );
 
         if (querySnapshot.empty) {
@@ -27,8 +66,6 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
         let words = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          console.log("Fetched document:", data); // Log each document
-
           words.push({
             word: data.word,
             correctTranslation: data.correctTranslation,
@@ -39,14 +76,15 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
           });
         });
 
-        console.log("Final questions array:", words);
         setQuestions(shuffleArray(words));
       } catch (error) {
         console.error("Error fetching questions:", error);
       }
     };
+
     fetchQuestions();
   }, [selectedLanguage, selectedDifficulty]);
+
 
   const fetchUsername = async (userId) => {
     try {
@@ -98,7 +136,7 @@ export default function PlayGames({ selectedLanguage, selectedDifficulty }) {
   };
 
   const handleBackToHome = () => {
-    window.location.href = "/dashboard"; // Replace with your actual dashboard route
+    navigate("/dashboard");
   };
 
   if (gameOver) {

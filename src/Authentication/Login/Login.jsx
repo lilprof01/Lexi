@@ -180,7 +180,7 @@ const Login = () => {
         <p className="mt-4 text-center text-sm/6 text-gray-500 dark:text-white">
           Not one of us?
           <Link
-            to="/signup"
+            to="/languageselection"
             className="pl-[10px] font-semibold text-[#6C3BAA] hover:text-[#6C3BAA]"
           >
             Create an account
