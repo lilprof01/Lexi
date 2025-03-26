@@ -54,12 +54,12 @@ const Sidebar = ({
           selectedMenu={selectedMenu === "leaderboard"}
           handleSelectedMenu={() => handleSelectedMenu("leaderboard")}
         />
-        <Menu
+        {/* <Menu
           icon={<FaUser className="h-6 w-6" />}
           text="select"
           isCollapsed={isCollapsed}
           handleSelectedMenu={() => handleSelectedMenu("home")}
-        />
+        /> */}
         <Menu
           icon={<MdDisplaySettings className="h-6 w-6" />}
           text="Display"

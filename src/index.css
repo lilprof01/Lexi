@@ -234,3 +234,8 @@ body, html {
 .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #000;
 }
+
+.leaderboard th, .leaderboard td {
+  padding: 5px;
+  border: 1px solid grey;
+}

@@ -3,7 +3,7 @@ import { collection, query, where, orderBy, limit, getDocs } from "firebase/fire
 import { auth, db } from "../../Authentication/Login/Firebase";
 
 
-const Header = () => {
+const Header = ({ openNav, setOpenNav}) => {
   const [highestScore, setHighestScore] = useState(null);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const Header = () => {
   };
 
   return (
-    <header className='p-8 bg-[#6c3baa] col-start-2 transition-all duration-300 flex justify-between sm:justify-end items-center align-middle'>
+    <header className='p-6 bg-[#6c3baa] col-start-2 transition-all duration-300 flex justify-between sm:justify-end items-center align-middle'>
       <div
         onClick={handleOpenNav}
         className={`hamburger h-10 w-10 flex flex-col justify-center items-end align-middle z-[100] hover:cursor-pointer sm:hidden`}
