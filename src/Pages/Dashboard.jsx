@@ -8,6 +8,8 @@ import Sidebar from "../Components/DashboardComponents/Sidebar";
 import Levels from "../Components/DashboardComponents/Levels";
 import MobileNav from "../Components/DashboardComponents/MobileNav";
 import Leaderboard from "./Leaderboard";
+import Display from "../Components/DashboardComponents/Display";
+import Settings from "../Components/DashboardComponents/Settings";
 
 const Dashboard = () => {
   const [selectedMenu, setSelectedMenu] = useState("home");
@@ -80,6 +82,8 @@ const Dashboard = () => {
           <Header openNav={openNav} setOpenNav={setOpenNav} />
           {selectedMenu === "home" && <Levels user={user} />}
           {selectedMenu === "leaderboard" && <Leaderboard user={user} />}
+          {selectedMenu === "display" && <Display user={user} />}
+          {selectedMenu === "settings" && <Settings user={user} />}
           {openNav && <MobileNav openNav={openNav} />}
         </main>
       ) : (
