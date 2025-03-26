@@ -1,44 +1,61 @@
-import React from 'react';
-import { FaUser } from 'react-icons/fa';
-import { FaGear } from 'react-icons/fa6';
-import { MdDashboard } from 'react-icons/md';
+import React from "react";
+import { FaUser } from "react-icons/fa";
+import { FaGear } from "react-icons/fa6";
+import {
+  MdLeaderboard,
+  MdHome,
+  MdDisplaySettings,
+  MdLogout,
+} from "react-icons/md";
 
-const MobileNav = ({ openNav }) => {
+const MobileNav = ({ openNav, selectedMenu, handleSelectedMenu }) => {
   return (
-    <nav className='sm:hidden fixed top-16 left-0 py-16 px-8 h-screen flex flex-col justify-between items-center align-middle gap-10 bg-[#6c3baa]'>
+    <nav className="sm:hidden fixed top-16 left-0 py-16 px-8 h-screen flex flex-col justify-between items-center align-middle gap-10 bg-[#6c3baa]">
       <div className="flex flex-col justify-between align-middle gap-10">
-        <div className='flex items-center align-middle gap-4 text-xl'>
-            <MdDashboard />
-            <p>Dashboard</p>
+        <div
+          onClick={() => handleSelectedMenu("home")}
+          className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer"
+        >
+          <MdHome />
+          <p>Home</p>
         </div>
-        <div className='flex items-center align-middle gap-4 text-xl'>
-            <FaUser />
-            <p>select</p>
+        <div
+          onClick={() => handleSelectedMenu("leaderboard")}
+          className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer"
+        >
+          <MdLeaderboard />
+          <p>Leaderboard</p>
         </div>
-        <div className='flex items-center align-middle gap-4 text-xl'>
-            <FaUser />
-            <p>select</p>
+        <div className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer">
+          <FaUser />
+          <p>select</p>
         </div>
-        <div className='flex items-center align-middle gap-4 text-xl'>
-            <FaUser />
-            <p>select</p>
+        <div
+          onClick={() => handleSelectedMenu("display")}
+          className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer"
+        >
+          <MdDisplaySettings />
+          <p>Display</p>
         </div>
-        <div className='flex items-center align-middle gap-4 text-xl'>
-            <FaUser />
-            <p>select</p>
+        <div
+          onClick={() => handleSelectedMenu("settings")}
+          className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer"
+        >
+          <FaGear />
+          <p>Settings</p>
         </div>
-        <div className='flex items-center align-middle gap-4 text-xl'>
-            <FaGear />
-            <p>Settings</p>
+        <div className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer">
+          <MdLogout />
+          <p>Logout</p>
         </div>
       </div>
 
-      <div className='flex items-center align-middle gap-4 text-xl py-6'>
+      <div className="w-full flex items-center align-middle gap-4 text-xl py-6 hover:cursor-pointer">
         <FaUser />
         <p>Profile</p>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default MobileNav
+export default MobileNav;

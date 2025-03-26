@@ -54,22 +54,24 @@ const Sidebar = ({
           selectedMenu={selectedMenu === "leaderboard"}
           handleSelectedMenu={() => handleSelectedMenu("leaderboard")}
         />
-        <Menu
+        {/* <Menu
           icon={<FaUser className="h-6 w-6" />}
           text="select"
           isCollapsed={isCollapsed}
           handleSelectedMenu={() => handleSelectedMenu("home")}
-        />
+        /> */}
         <Menu
           icon={<MdDisplaySettings className="h-6 w-6" />}
           text="Display"
           isCollapsed={isCollapsed}
+          selectedMenu={selectedMenu === "display"}
           handleSelectedMenu={() => handleSelectedMenu("display")}
         />
         <Menu
           icon={<FaGear className="h-6 w-6" />}
           text="Settings"
           isCollapsed={isCollapsed}
+          selectedMenu={selectedMenu === "settings"}
           handleSelectedMenu={() => handleSelectedMenu("settings")}
         />
         <Menu
