@@ -59,7 +59,7 @@ const Footer = () => {
             <li>Terms of Service</li>
             <li>Privacy Policy</li>
             <li>Contact</li>
-            <li>Support</li>
+            <Link to="/addwords">Support</Link>
           </ul>
         </div>
       </div>
