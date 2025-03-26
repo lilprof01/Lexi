@@ -10,7 +10,8 @@ const Levels = ({ user }) => {
       return;
     }
     
-    navigate(`/lexigame?language=${user.language}&level=${level}`);
+    const language = user.language.toLowerCase();
+    navigate("/lexigame", { state: { selectedLanguage: language, selectedDifficulty: level } });
   };
 
   return (

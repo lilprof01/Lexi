@@ -37,7 +37,7 @@ function App() {
             <Route path="/verifyemail" element={<VerifyEmail />} />
             <Route path="/addwords" element={<AddWords />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/lexigame" element={<PlayGames selectedLanguage="german" selectedDifficulty="beginner" />} />
+            <Route path="/lexigame" element={<PlayGames />} />
           </Routes>
           <Darkmodetoggler />
         </ThemeProvider>
