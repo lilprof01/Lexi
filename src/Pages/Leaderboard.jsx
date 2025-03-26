@@ -12,7 +12,7 @@ const Leaderboard = () => {
         const scoresRef = collection(db, "userScores");
 
         // Query top 10 highest scores across all users
-        const q = query(scoresRef, orderBy("score", "desc"), limit(10));
+        const q = query(scoresRef, orderBy("score", "desc"), limit(20));
 
         const querySnapshot = await getDocs(q);
         let leaderboardData = [];
@@ -37,14 +37,14 @@ const Leaderboard = () => {
   }, []);
 
   return (
-    <div>
-      <h2>🏆 Leaderboard</h2>
+    <div className="sm:px-10 px-5 py-5 flex flex-col justify-start align-middle gap-8 overflow-y-scroll">
+      <h2 className="text-2xl font-bold">🏆 Leaderboard</h2>
       {leaderboard.length === 0 ? (
         <p>Loading leaderboard...</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
+        <table className="text-left leaderboard">
+          <thead className="">
+            <tr className="p-10">
               <th>#</th>
               <th>Username</th>
               <th>Score</th>

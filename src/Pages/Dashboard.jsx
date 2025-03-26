@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Header from "../Components/DashboardComponents/Header";
 import Sidebar from "../Components/DashboardComponents/Sidebar";
-import Levels from "../Components/DashboardComponents/Levels";
+import Levels from "../Components/DashboardComponents/pages/Levels";
 import MobileNav from "../Components/DashboardComponents/MobileNav";
 import Leaderboard from "./Leaderboard";
-import Display from "../Components/DashboardComponents/Display";
-import Settings from "../Components/DashboardComponents/Settings";
+import Display from "../Components/DashboardComponents/pages/Display";
+import Settings from "../Components/DashboardComponents/pages/Settings";
 
 const Dashboard = () => {
   const [selectedMenu, setSelectedMenu] = useState("home");
@@ -84,7 +84,13 @@ const Dashboard = () => {
           {selectedMenu === "leaderboard" && <Leaderboard user={user} />}
           {selectedMenu === "display" && <Display user={user} />}
           {selectedMenu === "settings" && <Settings user={user} />}
-          {openNav && <MobileNav openNav={openNav} />}
+          {openNav && (
+            <MobileNav
+              openNav={openNav}
+              handleSelectedMenu={handleSelectedMenu}
+              selectedMenu={selectedMenu}
+            />
+          )}
         </main>
       ) : (
         <h1>Verifying email...</h1>
