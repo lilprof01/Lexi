@@ -6,6 +6,7 @@ import {
   MdHome,
   MdDisplaySettings,
   MdLogout,
+  MdLanguage,
 } from "react-icons/md";
 
 const MobileNav = ({ openNav, selectedMenu, handleSelectedMenu }) => {
@@ -34,11 +35,11 @@ const MobileNav = ({ openNav, selectedMenu, handleSelectedMenu }) => {
           <p>Display</p>
         </div>
         <div
-          onClick={() => handleSelectedMenu("settings")}
+          onClick={() => handleSelectedMenu("language")}
           className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer"
         >
-          <FaGear />
-          <p>Settings</p>
+          <MdLanguage />
+          <p>Languages</p>
         </div>
         <div className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer">
           <MdLogout />
@@ -46,7 +47,10 @@ const MobileNav = ({ openNav, selectedMenu, handleSelectedMenu }) => {
         </div>
       </div>
 
-      <div className="w-full flex items-center align-middle gap-4 text-xl py-6 hover:cursor-pointer">
+      <div
+        onClick={() => handleSelectedMenu("profile")}
+        className="w-full flex items-center align-middle gap-4 text-xl py-6 hover:cursor-pointer"
+      >
         <FaUser />
         <p>Profile</p>
       </div>

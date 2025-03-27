@@ -34,7 +34,7 @@ const Display = () => {
         <img alt="screenshot" src={lightss} className="h-full" />
         <div
           onClick={handleLightmode}
-          className="flex justify-center items-center align-middle gap-3 border border-[grey] px-6 py-2 rounded-full w-full"
+          className="flex justify-center items-center align-middle gap-3 border border-[grey] px-6 py-2 rounded-full w-full hover:cursor-pointer"
         >
           <label>Light Mode</label>
           <input ref={lightModeRef} type="radio" name="mode" className="accent-purple-500" />
@@ -44,7 +44,7 @@ const Display = () => {
         <img alt="screenshot" src={darkss} className="h-full" />
         <div
           onClick={handleDarkmode}
-          className="flex justify-center items-center align-middle gap-3 border border-[grey] px-6 py-2 rounded-full w-full"
+          className="flex justify-center items-center align-middle gap-3 border border-[grey] px-6 py-2 rounded-full w-full hover:cursor-pointer"
         >
           <label>Dark Mode</label>
           <input ref={darkModeRef} type="radio" name="mode" className="accent-purple-500" />

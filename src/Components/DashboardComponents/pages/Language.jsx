@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Settings = () => {
+const Language = () => {
   return (
     <div>
-      Settings
+      Languages
     </div>
   )
 }
 
-export default Settings
+export default Language;
