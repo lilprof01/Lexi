@@ -34,13 +34,13 @@ const MobileNav = ({ openNav, selectedMenu, handleSelectedMenu }) => {
           <p>Display</p>
         </div>
         <div
-          onClick={() => handleSelectedMenu("settings")}
+          onClick={() => handleSelectedMenu("language")}
           className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer"
         >
           <FaGear />
-          <p>Settings</p>
+          <p>Language</p>
         </div>
-        <div className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer">
+          <div className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer" onClick={() => handleSelectedMenu("logout")}>
           <MdLogout />
           <p>Logout</p>
         </div>
