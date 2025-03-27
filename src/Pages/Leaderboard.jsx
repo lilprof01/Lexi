@@ -11,21 +11,37 @@ const Leaderboard = () => {
       try {
         const scoresRef = collection(db, "userScores");
 
-        // Query top 10 highest scores across all users
-        const q = query(scoresRef, orderBy("score", "desc"), limit(20));
-
+        // Fetch all scores ordered by highest first
+        const q = query(scoresRef, orderBy("score", "desc"));
         const querySnapshot = await getDocs(q);
-        let leaderboardData = [];
+
+        let highestScores = {};
 
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          leaderboardData.push({
-            username: data.username || "Anonymous",
-            score: data.score,
-            language: data.selectedLanguage,
-            difficulty: data.selectedDifficulty,
-          });
+          const rawUsername = data.username || "Anonymous";
+          
+          // Normalize username (lowercase & trimmed)
+          const normalizedUsername = rawUsername.toLowerCase().trim();
+
+          // Check if user already exists or has a lower score
+          if (
+            !highestScores[normalizedUsername] || 
+            data.score > highestScores[normalizedUsername].score
+          ) {
+            highestScores[normalizedUsername] = {
+              username: rawUsername, // Keep original display name
+              score: data.score,
+              language: data.selectedLanguage,
+              difficulty: data.selectedDifficulty,
+            };
+          }
         });
+
+        // Convert to array and sort by score in descending order
+        const leaderboardData = Object.values(highestScores).sort(
+          (a, b) => b.score - a.score
+        );
 
         setLeaderboard(leaderboardData);
       } catch (error) {
@@ -36,6 +52,7 @@ const Leaderboard = () => {
     fetchLeaderboard();
   }, []);
 
+  
   return (
     <div className="sm:px-10 px-5 py-5 flex flex-col justify-start align-middle gap-8 overflow-y-scroll">
       <h2 className="text-2xl font-bold">🏆 Leaderboard</h2>

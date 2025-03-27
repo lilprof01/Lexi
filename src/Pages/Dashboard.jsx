@@ -9,9 +9,8 @@ import Levels from "../Components/DashboardComponents/pages/Levels";
 import MobileNav from "../Components/DashboardComponents/MobileNav";
 import Leaderboard from "./Leaderboard";
 import Display from "../Components/DashboardComponents/pages/Display";
-import Settings from "../Components/DashboardComponents/pages/Language";
 import Language from "../Components/DashboardComponents/pages/Language";
-import Profile from "../Components/DashboardComponents/pages/Profile";
+import Logout from "../Components/DashboardComponents/pages/Logout";
 
 const Dashboard = () => {
   const [selectedMenu, setSelectedMenu] = useState("home");
