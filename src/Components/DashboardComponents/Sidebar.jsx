@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Menu from "./Menu";
 import { FaUser } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
 import { MdHome, MdLeaderboard, MdDisplaySettings } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 
 const Sidebar = ({
   isCollapsed,
@@ -69,15 +70,18 @@ const Sidebar = ({
         />
         <Menu
           icon={<FaGear className="h-6 w-6" />}
-          text="Settings"
+          text="Language"
           isCollapsed={isCollapsed}
-          selectedMenu={selectedMenu === "settings"}
-          handleSelectedMenu={() => handleSelectedMenu("settings")}
+          selectedMenu={selectedMenu === "language"}
+          handleSelectedMenu={() => handleSelectedMenu("language")}
         />
         <Menu
           icon={<MdLogout className="h-6 w-6" />}
           text="Logout"
+          onClick={() => navigate("/logout")}
           isCollapsed={isCollapsed}
+          selectedMenu={selectedMenu === "logout"}
+          handleSelectedMenu={() => handleSelectedMenu("logout")}
         />
       </div>
       <div

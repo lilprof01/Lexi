@@ -9,7 +9,8 @@ import Levels from "../Components/DashboardComponents/pages/Levels";
 import MobileNav from "../Components/DashboardComponents/MobileNav";
 import Leaderboard from "./Leaderboard";
 import Display from "../Components/DashboardComponents/pages/Display";
-import Settings from "../Components/DashboardComponents/pages/Settings";
+import Language from "../Components/DashboardComponents/pages/Language";
+import Logout from "../Components/DashboardComponents/pages/Logout";
 
 const Dashboard = () => {
   const [selectedMenu, setSelectedMenu] = useState("home");
@@ -84,7 +85,8 @@ const Dashboard = () => {
           {selectedMenu === "home" && <Levels user={user} />}
           {selectedMenu === "leaderboard" && <Leaderboard user={user} />}
           {selectedMenu === "display" && <Display user={user} />}
-          {selectedMenu === "settings" && <Settings user={user} />}
+          {selectedMenu === "language" && <Language user={user} />}
+          {selectedMenu === "logout" && <Logout user={user} />}
           {openNav && (
             <MobileNav
               openNav={openNav}
