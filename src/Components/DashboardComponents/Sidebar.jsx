@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Menu from "./Menu";
 import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,6 +17,17 @@ const Sidebar = ({
   selectedMenu,
   handleSelectedMenu,
 }) => {
+  const navigate = useNavigate(); // Use the useNavigate hook
+
+  const handleLogout = async () => {
+    try {
+      await signOut(); // Sign out the user
+      navigate("/login"); // Navigate to the login page
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
   return (
     <aside className="border border-[#6c3baa] row-span-2 transition-all duration-300 hidden sm:flex flex-col justify-between ">
       <div
@@ -76,10 +87,8 @@ const Sidebar = ({
         <Menu
           icon={<MdLogout className="h-6 w-6" />}
           text="Logout"
-          onClick={() => navigate("/logout")}
+          handleSelectedMenu={handleLogout} // Call the logout handler
           isCollapsed={isCollapsed}
-          selectedMenu={selectedMenu === "logout"}
-          handleSelectedMenu={() => handleSelectedMenu("logout")}
         />
       </div>
       <div
