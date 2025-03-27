@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../Authentication/Login/Firebase";
 import { collection, getDocs, getDoc, addDoc, doc } from "firebase/firestore";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 
-export default function PlayGames({ selectedDifficulty }) {
+export default function PlayGames() {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(10);
   const [gameOver, setGameOver] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
   const [username, setUsername] = useState("Anonymous");
   const navigate = useNavigate("")
+  const location = useLocation();
+const { selectedLanguage, selectedDifficulty } = location.state || {};
 
   useEffect(() => {
     const fetchUserData = async (userId) => {
@@ -39,7 +40,7 @@ export default function PlayGames({ selectedDifficulty }) {
     if (auth.currentUser) {
       fetchUserData(auth.currentUser.uid).then((userData) => {
         setUsername(userData.username);
-        setSelectedLanguage(userData.selectedLanguage);
+        // setSelectedLanguage(userData.selectedLanguage);
         console.log("Selected Language:", userData.selectedLanguage);
       });
     }

@@ -42,7 +42,7 @@ const Hero = () => {
       <div className="lg:w-full flex flex-col justify-center items-center lg:items-baseline gap-4 lg:gap-16 p-8 lg:p-16">
         <h1 className="text-4xl lg:text-6xl text-center lg:text-left">
           What <span className="text-[#6C3BAA] font-semibold">language</span> do
-          you want to learn?
+          you want to practice?
         </h1>
         <div className="w-full grid sm:grid-cols-2 gap-8">
           <button
