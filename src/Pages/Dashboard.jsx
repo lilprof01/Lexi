@@ -88,6 +88,7 @@ const Dashboard = () => {
           {selectedMenu === "display" && <Display user={user} />}
           {selectedMenu === "language" && <Language user={user} />}
           {selectedMenu === "profile" && <Profile user={user} />}
+          {selectedMenu === "logout" && <Logout user={user} />}
           {openNav && (
             <MobileNav
               openNav={openNav}
