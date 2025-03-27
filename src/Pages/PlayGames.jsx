@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { auth, db } from "../Authentication/Login/Firebase";
 import { collection, getDocs, getDoc, addDoc, doc } from "firebase/firestore";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
+import { MdHome, MdReplay } from "react-icons/md";
 
 export default function PlayGames() {
   const [questions, setQuestions] = useState([]);
@@ -146,8 +147,8 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
         <div className="shadow-2xl shadow-purple-600 p-6 h-[60%] sm:w-[60%] flex flex-col justify-center items-center align-middle gap-4 rounded-3xl">
           <h2 className="text-2xl">Game Over! Your Final Score: {score}</h2>
           <div className="flex justify-center items-center align-middle gap-4">
-            <button onClick={handleReplay}>Replay</button>
-            <button onClick={handleBackToHome}>Home</button>
+            <button onClick={handleReplay} className="hover:cursor-pointer"><MdReplay className="h-6 w-6" /></button>
+            <button onClick={handleBackToHome} className="hover:cursor-pointer"><MdHome className="h-6 w-6" /></button>
           </div>
         </div>
       </main>

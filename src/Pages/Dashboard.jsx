@@ -86,7 +86,7 @@ const Dashboard = () => {
           {selectedMenu === "leaderboard" && <Leaderboard user={user} />}
           {selectedMenu === "display" && <Display user={user} />}
           {selectedMenu === "language" && <Language user={user} />}
-          {selectedMenu === "logout" && <Logout user={user} />}
+          {selectedMenu === "profile" && <Profile user={user} />}
           {openNav && (
             <MobileNav
               openNav={openNav}
@@ -96,7 +96,9 @@ const Dashboard = () => {
           )}
         </main>
       ) : (
-        <h1>Verifying email...</h1>
+        <main className="h-screen dark:text-white dark:bg-[#121212]">
+          <h1>Verifying email...</h1>
+        </main>
       )}
     </div>
   );
