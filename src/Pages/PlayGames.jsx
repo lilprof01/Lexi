@@ -142,7 +142,7 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
 
   if (gameOver) {
     return (
-      <main className="flex justify-center items-center align-middle h-screen">
+      <main className="flex justify-center items-center align-middle h-screen dark:bg-[#121212] dark:text-white">
         <div className="shadow-2xl shadow-purple-600 p-6 h-[60%] sm:w-[60%] flex flex-col justify-center items-center align-middle gap-4 rounded-3xl">
           <h2 className="text-2xl">Game Over! Your Final Score: {score}</h2>
           <div className="flex justify-center items-center align-middle gap-4">
@@ -155,7 +155,11 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
   }
 
   if (questions.length === 0) {
-    return <h2>Loading questions...</h2>;
+    return (
+    <main className="dark:bg-[#121212] dark:text-white h-screen">
+      <h2>Loading questions...</h2>
+    </main>
+  );
   }
 
   const handleGameOver = async () => {
@@ -187,7 +191,7 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
   };
 
   return (
-    <main className="h-screen flex flex-col items-center align-middle justify-start gap-10">
+    <main className="h-screen flex flex-col items-center align-middle justify-start gap-10 dark:bg-[#121212] dark:text-white">
       <div className="top flex justify-between items-center align-middle p-4 w-full">
         <p>
           Time Left:{" "}
@@ -209,7 +213,7 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
               <button
                 key={index}
                 onClick={() => handleAnswerClick(option)}
-                className={`py-2 px-4 flex justify-center items-center align-middle border border-black rounded-full w-full h-20 active:scale-95 hover:cursor-pointer ${
+                className={`py-2 px-4 flex justify-center items-center align-middle border border-[grey] rounded-full w-full h-20 active:scale-95 hover:cursor-pointer ${
                   option === questions[currentQuestionIndex].correctTranslation
                     ? "active:bg-green-500 active:text-white"
                     : "active:bg-red-500 active:text-white"

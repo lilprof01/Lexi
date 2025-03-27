@@ -21,6 +21,7 @@ const Dashboard = () => {
 
   const handleSelectedMenu = (menu) => {
     setSelectedMenu(menu);
+    setOpenNav(false);
   };
 
   useEffect(() => {
@@ -69,7 +70,7 @@ const Dashboard = () => {
     <div>
       {isVerified ? (
         <main
-          className={`sm:grid ${
+          className={`flex flex-col sm:grid ${
             isCollapsed ? "grid-cols-[80px_1fr]" : "grid-cols-[200px_1fr]"
           } grid-rows-[80px_1fr] h-screen transition-all duration-300 dark:bg-[#121212] dark:text-white`}
         >
