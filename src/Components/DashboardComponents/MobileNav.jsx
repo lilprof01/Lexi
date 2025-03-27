@@ -26,10 +26,6 @@ const MobileNav = ({ openNav, selectedMenu, handleSelectedMenu }) => {
           <MdLeaderboard />
           <p>Leaderboard</p>
         </div>
-        <div className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer">
-          <FaUser />
-          <p>select</p>
-        </div>
         <div
           onClick={() => handleSelectedMenu("display")}
           className="flex items-center align-middle gap-4 text-xl hover:cursor-pointer"
