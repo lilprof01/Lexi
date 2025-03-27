@@ -11,6 +11,7 @@ import Leaderboard from "./Leaderboard";
 import Display from "../Components/DashboardComponents/pages/Display";
 import Language from "../Components/DashboardComponents/pages/Language";
 import Logout from "../Components/DashboardComponents/pages/Logout";
+import Profile from "../Components/DashboardComponents/pages/Profile";
 
 const Dashboard = () => {
   const [selectedMenu, setSelectedMenu] = useState("home");
