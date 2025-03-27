@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../Authentication/Login/Firebase";
 import { collection, getDocs, getDoc, addDoc, doc } from "firebase/firestore";
-import { Navigate, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { MdHome, MdReplay } from "react-icons/md";
 
 export default function PlayGames() {
@@ -141,6 +141,18 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
     navigate("/dashboard");
   };
 
+  const settingsPopup = () => {
+    return (
+      <main className="flex justify-center items-center align-middle h-screen dark:bg-[#121212] dark:text-white">
+        <div className="shadow-2xl shadow-purple-600 p-6 h-[60%] sm:w-[60%] flex flex-col justify-center items-center align-middle gap-4 rounded-3xl">
+          <div className="flex justify-center items-center align-middle gap-4">
+            <button onClick={handleReplay} className="hover:cursor-pointer">Replay</button>
+            <button onClick={handleBackToHome} className="hover:cursor-pointer">Quit</button>
+          </div>
+        </div>
+      </main>
+    )
+  }
   if (gameOver) {
     return (
       <main className="flex justify-center items-center align-middle h-screen dark:bg-[#121212] dark:text-white">
@@ -226,6 +238,9 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
           ))}
         </div>
       </div>
+      <button onClick={() => settingsPopup} className='p-4 bg-[#121212] dark:bg-[#f6f4ef] text-white dark:text-black hover:cursor-pointer hover:scale-105 fixed bottom-1.5 right-1.5 rounded-full shadow-md shadow-black dark:shadow-cyan-50 z-50'>
+      🌑
+    </button>
     </main>
   );
 }
