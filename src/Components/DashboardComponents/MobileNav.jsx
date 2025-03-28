@@ -11,7 +11,7 @@ import {
 
 const MobileNav = ({ openNav, selectedMenu, handleSelectedMenu }) => {
   return (
-    <nav className="sm:hidden fixed bottom-0 top-16 left-0 py-16 px-8 h-screen flex flex-col justify-between items-center align-middle gap-10 bg-[#6c3baa]">
+    <nav className="sm:hidden fixed top-22 left-0 px-8 h-5/6 flex flex-col justify-between items-center align-middle gap-10 bg-[#6c3baa]">
       <div className="flex flex-col justify-between align-middle gap-10">
         <div
           onClick={() => handleSelectedMenu("home")}
