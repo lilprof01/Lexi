@@ -30,28 +30,57 @@ const Profile = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-screen text-2xl">Loading...</div>;
   }
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold">Profile</h1>
-      {userData ? (
-        <div className="mt-5 text-xl">
-          <div className={`${userData.gender === 'male' ? 'bg-[url(/maleavatar.webp)]' : 'bg-[url(/maleavatar.webp)]'} h-16 w-16 bg-center bg-cover rounded-full mb-4`}></div>
-          <p><strong>First Name:</strong> {userData.firstName || "N/A"}</p>
-          <p><strong>Last Name:</strong> {userData.lastName || "N/A"}</p>
-          <p><strong>Email:</strong> {userData.email || "N/A"}</p>
-          <p><strong>Username:</strong> {userData.username || "N/A"}</p>
-          <p><strong>Phone Number:</strong> {userData.phone || "N/A"}</p>
-          <p><strong>Age:</strong> {userData.age || "N/A"}</p>
-          <p><strong>Gender:</strong> {userData.gender || "N/A"}</p>
-          <p><strong>Language:</strong> {userData.language || "N/A"}</p>
+    <main className="flex justify-center items-center overflow-y-scroll">
+      <div className="shadow-lg dark:shadow-purple-600 rounded-lg p-8 w-full max-w-3xl">
+        <div className="flex flex-col items-center">
+          <div
+            className={`${
+              userData?.gender === "male"
+                ? "bg-[url('/maleavatar.webp')]"
+                : "bg-[url('/femaleavatar.webp')]"
+            } h-32 w-32 bg-center bg-cover rounded-full mb-6`}
+          ></div>
+
+          {/* User Name */}
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
+            {userData?.firstName || "N/A"} {userData?.lastName || "N/A"}
+          </h1>
+          <p className="text-gray-500 text-lg">{userData?.email || "N/A"}</p>
         </div>
-      ) : (
-        <p>No user data found.</p>
-      )}
-    </div>
+
+        {/* User Details */}
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 sm:max-w-[60%] m-auto gap-6">
+          <div>
+            <p className="text-gray-600 text-sm">Username</p>
+            <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.username || "N/A"}</p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Phone Number</p>
+            <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.phone || "N/A"}</p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Age</p>
+            <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.age || "N/A"}</p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Gender</p>
+            <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.gender || "N/A"}</p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Language</p>
+            <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.language || "N/A"}</p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-sm">Joined</p>
+            <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.joined || "N/A"}</p>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 };
 
