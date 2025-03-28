@@ -43,6 +43,12 @@ const Header = ({ openNav, setOpenNav}) => {
 
   const handleOpenNav = () => {
     setOpenNav(!openNav);
+  
+    if (!openNav) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
   };
 
   return (

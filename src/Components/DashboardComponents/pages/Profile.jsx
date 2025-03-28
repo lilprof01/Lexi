@@ -34,7 +34,7 @@ const Profile = () => {
   }
 
   return (
-    <main className="flex justify-center items-center overflow-y-scroll">
+    <main className="flex justify-center items-center overflow-y-scroll py-10 mt-10">
       <div className="shadow-lg dark:shadow-purple-600 rounded-lg p-8 w-full max-w-3xl">
         <div className="flex flex-col items-center">
           <div
@@ -42,7 +42,7 @@ const Profile = () => {
               userData?.gender === "male"
                 ? "bg-[url('/maleavatar.webp')]"
                 : "bg-[url('/femaleavatar.webp')]"
-            } h-32 w-32 bg-center bg-cover rounded-full mb-6`}
+            } h-32 w-32 bg-center bg-cover rounded-full mt-10 sm:mt-0 mb-6`}
           ></div>
 
           {/* User Name */}
