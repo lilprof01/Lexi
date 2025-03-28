@@ -11,9 +11,9 @@ export default function PlayGames() {
   const [timeLeft, setTimeLeft] = useState(10);
   const [gameOver, setGameOver] = useState(false);
   const [username, setUsername] = useState("Anonymous");
-  const navigate = useNavigate("")
+  const navigate = useNavigate("");
   const location = useLocation();
-const { selectedLanguage, selectedDifficulty } = location.state || {};
+  const { selectedLanguage, selectedDifficulty } = location.state || {};
 
   useEffect(() => {
     const fetchUserData = async (userId) => {
@@ -58,7 +58,10 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
         );
 
         const querySnapshot = await getDocs(
-          collection(db, `lexi/${selectedLanguage.toLowerCase()}/${selectedDifficulty}`)
+          collection(
+            db,
+            `lexi/${selectedLanguage.toLowerCase()}/${selectedDifficulty}`
+          )
         );
 
         if (querySnapshot.empty) {
@@ -87,13 +90,12 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
     fetchQuestions();
   }, [selectedLanguage, selectedDifficulty]);
 
-
   const fetchUsername = async (userId) => {
     try {
-      const userDoc = await getDoc(doc(db, "users", userId)); 
+      const userDoc = await getDoc(doc(db, "users", userId));
       if (userDoc.exists()) {
         console.log("Fetched user document:", userDoc.data()); // Log the data
-        return userDoc.data().username || "Anonymous"; 
+        return userDoc.data().username || "Anonymous";
       } else {
         console.warn(`No user document found for userId: ${userId}`);
       }
@@ -146,21 +148,30 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
       <main className="flex justify-center items-center align-middle h-screen dark:bg-[#121212] dark:text-white">
         <div className="shadow-2xl shadow-purple-600 p-6 h-[60%] sm:w-[60%] flex flex-col justify-center items-center align-middle gap-4 rounded-3xl">
           <div className="flex justify-center items-center align-middle gap-4">
-            <button onClick={handleReplay} className="hover:cursor-pointer">Replay</button>
-            <button onClick={handleBackToHome} className="hover:cursor-pointer">Quit</button>
+            <button onClick={handleReplay} className="hover:cursor-pointer">
+              Replay
+            </button>
+            <button onClick={handleBackToHome} className="hover:cursor-pointer">
+              Quit
+            </button>
           </div>
         </div>
       </main>
-    )
-  }
+    );
+  };
   if (gameOver) {
     return (
       <main className="flex justify-center items-center align-middle h-screen dark:bg-[#121212] dark:text-white">
         <div className="shadow-2xl shadow-purple-600 p-6 h-[60%] sm:w-[60%] flex flex-col justify-center items-center align-middle gap-4 rounded-3xl">
           <h2 className="text-2xl">Game Over! Your Final Score: {score}</h2>
+          <h2>{score < 200 ? 'Is that the best you can do? Replay!!!' : 'Nice try, but you can do better. Try again!'}</h2>
           <div className="flex justify-center items-center align-middle gap-4">
-            <button onClick={handleReplay} className="hover:cursor-pointer"><MdReplay className="h-6 w-6" /></button>
-            <button onClick={handleBackToHome} className="hover:cursor-pointer"><MdHome className="h-6 w-6" /></button>
+            <button onClick={handleReplay} className="hover:cursor-pointer">
+              <MdReplay className="h-10 w-10 text-green-500" />
+            </button>
+            <button onClick={handleBackToHome} className="hover:cursor-pointer">
+              <MdHome className="h-10 w-10 text-purple-500" />
+            </button>
           </div>
         </div>
       </main>
@@ -169,14 +180,14 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
 
   if (questions.length === 0) {
     return (
-    <main className="dark:bg-[#121212] dark:text-white h-screen">
-      <h2>Loading questions...</h2>
-    </main>
-  );
+      <main className="dark:bg-[#121212] dark:text-white h-screen">
+        <h2>Loading questions...</h2>
+      </main>
+    );
   }
 
   const handleGameOver = async () => {
-    setGameOver(true); // 
+    setGameOver(true); //
 
     if (!auth.currentUser) {
       console.error("No authenticated user!");
@@ -238,9 +249,12 @@ const { selectedLanguage, selectedDifficulty } = location.state || {};
           ))}
         </div>
       </div>
-      <button onClick={() => settingsPopup} className='p-4 bg-[#121212] dark:bg-[#f6f4ef] text-white dark:text-black hover:cursor-pointer hover:scale-105 fixed bottom-1.5 right-1.5 rounded-full shadow-md shadow-black dark:shadow-cyan-50 z-50'>
-      🌑
-    </button>
+      <button
+        onClick={() => settingsPopup}
+        className="p-4 bg-[#121212] dark:bg-[#f6f4ef] text-white dark:text-black hover:cursor-pointer hover:scale-105 fixed bottom-1.5 right-1.5 rounded-full shadow-md shadow-black dark:shadow-cyan-50 z-50"
+      >
+        🌑
+      </button>
     </main>
   );
 }

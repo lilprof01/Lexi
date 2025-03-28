@@ -70,7 +70,7 @@ const Language = () => {
   };
 
   return (
-    <div className="col-start-2 p-16 transition-all duration-300 flex flex-col justify-start items-center text-center align-middle gap-8 dark:bg-[#121212] overflow-y-scroll">
+    <div className="col-start-2 px-16 transition-all duration-300 flex flex-col justify-start items-center text-center align-middle gap-8 dark:bg-[#121212] overflow-y-scroll">
       <ToastContainer />
       <div>
         <h1 className="text-3xl">Change Your Language</h1>
