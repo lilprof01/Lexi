@@ -29,7 +29,7 @@ const Display = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row justify-start items-center align-middle gap-8 overflow-y-scroll p-6">
+    <div className="flex flex-col lg:flex-row justify-start items-center align-middle gap-8 overflow-y-scroll p-6 mt-20 sm:mt-0">
       <div className="w-full h-full flex flex-col justify-center items-center align-middle gap-4 p-6">
         <img alt="screenshot" src={lightss} className="h-full" />
         <div

@@ -34,7 +34,7 @@ const Profile = () => {
   }
 
   return (
-    <main className="flex justify-center items-center overflow-y-scroll py-10 mt-10">
+    <main className="flex justify-center items-center overflow-y-scroll py-10 mt-20 sm:mt-10">
       <div className="shadow-lg dark:shadow-purple-600 rounded-lg p-8 w-full max-w-3xl">
         <div className="flex flex-col items-center">
           <div
@@ -53,28 +53,28 @@ const Profile = () => {
         </div>
 
         {/* User Details */}
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 sm:max-w-[60%] m-auto gap-6">
-          <div>
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 sm:max-w-[60%] m-auto gap-6 text-center">
+          <div className="">
             <p className="text-gray-600 text-sm">Username</p>
             <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.username || "N/A"}</p>
           </div>
-          <div>
+          <div className="">
             <p className="text-gray-600 text-sm">Phone Number</p>
             <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.phone || "N/A"}</p>
           </div>
-          <div>
+          <div className="">
             <p className="text-gray-600 text-sm">Age</p>
             <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.age || "N/A"}</p>
           </div>
-          <div>
+          <div className="">
             <p className="text-gray-600 text-sm">Gender</p>
             <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.gender || "N/A"}</p>
           </div>
-          <div>
+          <div className="">
             <p className="text-gray-600 text-sm">Language</p>
             <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.language || "N/A"}</p>
           </div>
-          <div>
+          <div className="">
             <p className="text-gray-600 text-sm">Joined</p>
             <p className="text-lg font-semibold text-gray-800 dark:text-white">{userData?.joined || "N/A"}</p>
           </div>
