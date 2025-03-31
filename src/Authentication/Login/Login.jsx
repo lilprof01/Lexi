@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import "react-toastify/dist/ReactToastify.css";
+import { MdFacebook } from "react-icons/md";
+import { IoLogoGoogle } from "react-icons/io";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -100,7 +102,7 @@ const Login = () => {
       </div>
       <ToastContainer position="top-center" autoClose={3000} />
 
-      <div className="mt-10 sm:mx-auto sm:w-full px-[50px] md:px-0 sm:max-w-sm">
+      <div className="mt-10 w-full sm:mx-auto sm:w-full sm:max-w-sm px-10">
         <form className="space-y-6" onSubmit={signIn} method="POST">
           <div>
             <label
@@ -165,15 +167,15 @@ const Login = () => {
         <div className="flex justify-center items-center gap-4">
           <button
             onClick={handleGoogle}
-            className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6C3BAA] hover:text-white"
+            className="w-full rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6c3baa] hover:text-white hover:cursor-pointer flex justify-center items-center transition-all duration-75"
           >
-            Sign in with Google
+            <IoLogoGoogle className="h-6 w-6" />
           </button>
           <button
             onClick={handleFacebook}
-            className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6C3BAA] hover:text-white"
+            className="w-full rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6c3baa] hover:text-white hover:cursor-pointer flex justify-center items-center transition-all duration-75"
           >
-            Sign in with Facebook
+            <MdFacebook className="h-6 w-6" />
           </button>
         </div>
 
