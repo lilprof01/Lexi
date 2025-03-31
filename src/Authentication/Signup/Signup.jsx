@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 // import { FaGoogle } from 'react-icons/fa6'
 import { query, collection, where, getDocs } from "firebase/firestore";
 import "react-toastify/dist/ReactToastify.css";
+import { MdFacebook } from "react-icons/md";
+import { IoLogoGoogle } from "react-icons/io";
 
 const Signup = () => {
   const [firstname, setFirstname] = useState("");
@@ -152,7 +154,7 @@ const Signup = () => {
       </div>
       <ToastContainer position="top-center" autoClose={3000} />
 
-      <div className="mt-10 sm:mx-auto sm:w-full px-[50px] md:px-0 sm:max-w-sm">
+      <div className="mt-10 sm:mx-auto sm:w-full md:px-0 sm:max-w-sm">
         <form onSubmit={signUp} className="space-y-6" action="#" method="POST">
           <div>
             <div className="mt-2 flex justify-center items-center gap-7">
@@ -163,7 +165,7 @@ const Signup = () => {
                 onChange={(e) => setFirstname(e.target.value)}
                 required
                 placeholder="First Name"
-                className="block w-[180px] md:w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                className="block w-full md:w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />
               <input
                 type="text"
@@ -172,7 +174,7 @@ const Signup = () => {
                 onChange={(e) => setLastname(e.target.value)}
                 required
                 placeholder="Last Name"
-                className="block w-[180px] md:w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                className="block w-full md:w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />
             </div>
             <div className="mt-2 flex justify-center items-center gap-7">
@@ -183,7 +185,7 @@ const Signup = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Your Username"
-                className="block w-[180px] md:w-full rounded-md mt-2 bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                className="block w-full md:w-full rounded-md mt-2 bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />
               <input
                 type="text"
@@ -192,7 +194,7 @@ const Signup = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Phone Number"
-                className="block w-[180px] md:w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                className="block w-full md:w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />
             </div>
             <div>
@@ -213,7 +215,7 @@ const Signup = () => {
                   required
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
-                  className="block w-[180px] rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                  className="block w-full rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
                 >
                   <option value="" disabled defaultValue>
                     Age
@@ -229,7 +231,7 @@ const Signup = () => {
                   required
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
-                  className="block w-[180px] rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                  className="block w-full rounded-md bg-white px-3 py-1.5 mt-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
                 >
                   <option value="" disabled defaultValue>
                     Gender
@@ -263,15 +265,15 @@ const Signup = () => {
         <div className="flex justify-center items-center gap-4">
           <button
             onClick={handleGoogle}
-            className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6c3baa] hover:text-white hover:cursor-pointer"
+            className="w-full rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6c3baa] hover:text-white hover:cursor-pointer flex justify-center items-center transition-all duration-75"
           >
-            Sign up with Google
+            <IoLogoGoogle className="h-6 w-6 transition-all duration-75" />
           </button>
           <button
             onClick={handleFacebook}
-            className="block w-[180px] rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6c3baa] hover:text-white hover:cursor-pointer"
+            className="w-full rounded-md text-sm/6 font-bold text-center my-5 bg-white px-3 py-1.5 text-[#6C3BAA] outline-1 -outline-offset-1 outline-gray-300 sm:text-sm/6 hover:bg-[#6c3baa] hover:text-white hover:cursor-pointer flex justify-center items-center transition-all duration-75"
           >
-            Sign up with Facebook
+            <MdFacebook className="h-6 w-6 transition-all duration-75" />
           </button>
         </div>
 
