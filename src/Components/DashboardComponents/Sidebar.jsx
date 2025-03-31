@@ -18,6 +18,7 @@ const Sidebar = ({
 }) => {
 
   return (
+    // sidebar for dashboard page
     <aside className="border border-[#6c3baa] row-span-2 transition-all duration-300 hidden sm:flex flex-col justify-between ">
       <div
         className={`flex ${

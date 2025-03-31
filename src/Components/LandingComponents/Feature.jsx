@@ -3,7 +3,7 @@ import feature1 from '/feature1.webp';
 import feature2 from '/feature2.webp';
 import feature3 from '/feature3.webp';
 
-const Carousel = () => {
+const Feature = () => {
   const features = [
     {
       title: "Immersive Learning",
@@ -26,6 +26,7 @@ const Carousel = () => {
   ];
 
   return (
+    // Features section
     <section
       role="carousel"
       className="h-screen sm:h-[90vh] flex flex-col justify-center items-center gap-10 p-8"
@@ -56,4 +57,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default Feature;

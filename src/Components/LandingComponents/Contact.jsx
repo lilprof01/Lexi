@@ -28,6 +28,7 @@ function Contact() {
   };
 
   return (
+    // Contact section
     <section className="flex flex-col md:flex-row p-8 border-b border-b-black dark:border-b-[#f6f4ef]">
       {/* Left Section - Contact Info */}
       <div className="md:w-1/2 p-6 flex flex-col gap-5">

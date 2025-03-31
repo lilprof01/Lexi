@@ -26,6 +26,7 @@ const Hero = () => {
     navigate("/signup");
   };
   return (
+    // Language select component for landing page
     <section
       role="hero"
       className="hero-section flex flex-col-reverse lg:flex-row justify-center items-center lg:gap-10 p-16 lg:p-16"

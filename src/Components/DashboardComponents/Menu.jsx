@@ -2,6 +2,8 @@ import React from "react";
 
 const Menu = ({ icon, text, isCollapsed, selectedMenu, handleSelectedMenu }) => {
   return (
+    // Menu item
+    // When clicked, the corresponding page is rendered
     <div
       onClick={handleSelectedMenu}
       className={` rounded-2xl h-[10%] flex ${
