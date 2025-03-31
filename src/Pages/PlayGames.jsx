@@ -145,6 +145,7 @@ export default function PlayGames() {
 
   const settingsPopup = () => {
     return (
+      // in-game Settings
       <main className="flex justify-center items-center align-middle h-screen dark:bg-[#121212] dark:text-white">
         <div className="shadow-2xl shadow-purple-600 p-6 h-[60%] sm:w-[60%] flex flex-col justify-center items-center align-middle gap-4 rounded-3xl">
           <div className="flex justify-center items-center align-middle gap-4">
@@ -161,6 +162,7 @@ export default function PlayGames() {
   };
   if (gameOver) {
     return (
+      // Game over pop-up
       <main className="flex justify-center items-center align-middle h-screen dark:bg-[#121212] dark:text-white">
         <div className="shadow-2xl shadow-purple-600 p-6 h-[60%] sm:w-[60%] flex flex-col justify-center items-center align-middle gap-4 rounded-3xl">
           <h2 className="text-2xl">Game Over! Your Final Score: {score}</h2>
@@ -215,6 +217,7 @@ export default function PlayGames() {
   };
 
   return (
+    // Game UI
     <main className="h-screen flex flex-col items-center align-middle justify-start gap-10 dark:bg-[#121212] dark:text-white">
       <div className="top flex justify-between items-center align-middle p-4 w-full">
         <p>

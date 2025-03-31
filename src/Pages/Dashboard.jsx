@@ -69,6 +69,7 @@ const Dashboard = () => {
   }, [navigate]);
 
   return (
+    // User dashboard page
     <div>
       {isVerified ? (
         <main
