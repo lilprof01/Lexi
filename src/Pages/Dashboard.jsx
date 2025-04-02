@@ -99,7 +99,7 @@ const Dashboard = () => {
         </main>
       ) : (
         <main className="h-screen dark:text-white dark:bg-[#121212]">
-          <h1>Verifying email...</h1>
+          <h1>Fetching Dashboard...</h1>
         </main>
       )}
     </div>
