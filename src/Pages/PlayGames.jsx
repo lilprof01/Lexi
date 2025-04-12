@@ -165,7 +165,8 @@ export default function PlayGames() {
       // Game over pop-up
       <main className="flex justify-center items-center align-middle h-screen dark:bg-[#121212] dark:text-white">
         <div className="shadow-2xl shadow-purple-600 p-6 h-[60%] sm:w-[60%] flex flex-col justify-center items-center align-middle gap-4 rounded-3xl">
-          <h2 className="text-2xl">Game Over! Your Final Score: {score}</h2>
+          <h2 className="text-2xl">Game Over!</h2>
+          <h2>Your Final Score: {score}</h2>
           <h2>{score < 200 ? 'Is that the best you can do? Replay!!!' : 'Nice try, but you can do better. Try again!'}</h2>
           <div className="flex justify-center items-center align-middle gap-4">
             <button onClick={handleReplay} className="hover:cursor-pointer">
