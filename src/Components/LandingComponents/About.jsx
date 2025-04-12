@@ -2,6 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
+    // About section
     <section className="howitworks-section flex flex-col justify-center items-center gap-8 p-8 lg:px-64 lg:py-32 text-center">
       <h1 className='font-bold text-3xl'>About Lexi</h1>
       <p className='text-2xl'>

@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext("light");
 
+// Theme provider for the app
 export const ThemeProvider = ({ children }) => {
   const [darkmode, setDarkmode] = useState(
     localStorage.getItem("theme") === "dark"

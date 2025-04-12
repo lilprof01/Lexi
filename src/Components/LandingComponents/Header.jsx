@@ -15,6 +15,7 @@ const Header = ({ openNav, handleOpenNav }) => {
   }, [openNav]);
 
   return (
+    // header component for landing page
     <header
       role="banner"
       className={`${

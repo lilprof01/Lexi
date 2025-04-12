@@ -10,6 +10,7 @@ import {
 
 const MobileNav = ({ openNav, selectedMenu, handleSelectedMenu }) => {
   return (
+    // mobile nav for dashboard page
     <nav className="sm:hidden fixed top-22 left-0 px-8 h-5/6 flex flex-col justify-between items-center align-middle gap-10 bg-[#6c3baa]">
       <div className="flex flex-col justify-between align-middle gap-10">
         <div

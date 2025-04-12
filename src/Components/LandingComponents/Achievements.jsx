@@ -5,6 +5,7 @@ import { MdOutlineVerifiedUser } from "react-icons/md";
 
 const Achievements = () => {
   return (
+    // Achievements section
     <section
       role="achievements"
       className="achievements-section flex flex-col justify-center items-center gap-16 bg-[#6c3baa] text-[#f6f4ef] py-8"

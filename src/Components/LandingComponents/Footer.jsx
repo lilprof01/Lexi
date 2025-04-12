@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
+    // Footer component for landing page
     <footer
       role="footer"
       className="footer-section flex flex-col lg:flex-row items-center justify-between gap-20 p-8 sm:p-32"

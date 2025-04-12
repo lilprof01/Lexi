@@ -6,6 +6,7 @@ import secImage3 from "/community.webp";
 
 const Howitworks = () => {
   return (
+    // How it works section
     <section
       role="howitworks"
       className="howitworks-section flex flex-col justify-center items-center gap-8 lg:gap-20 p-8 lg:p-28"

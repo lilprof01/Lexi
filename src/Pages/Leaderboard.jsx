@@ -6,6 +6,7 @@ import { db } from "../Authentication/Login/Firebase";
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
 
+  // function fetches leaderboard for current user
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
@@ -54,6 +55,7 @@ const Leaderboard = () => {
 
   
   return (
+    // Leaderboard
     <div className="sm:px-10 px-5 py-5 flex flex-col justify-start align-middle gap-8 overflow-y-scroll mt-20 sm:mt-0">
       <h2 className="text-2xl font-bold">🏆 Leaderboard</h2>
       {leaderboard.length === 0 ? (
